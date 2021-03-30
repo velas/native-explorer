@@ -1,5 +1,5 @@
 import React from "react";
-import { ConfirmedBlock, PublicKey } from "@solana/web3.js";
+import { ConfirmedBlock, PublicKey } from "@velas/web3";
 import { Address } from "components/common/Address";
 import { TableCardBody } from "components/common/TableCardBody";
 

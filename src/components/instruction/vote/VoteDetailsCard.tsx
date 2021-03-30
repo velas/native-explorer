@@ -1,5 +1,5 @@
 import React from "react";
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@velas/web3";
 import { create, Struct } from "superstruct";
 import { ParsedInfo } from "validators";
 import {

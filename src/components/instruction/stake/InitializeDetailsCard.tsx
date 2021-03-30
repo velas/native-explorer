@@ -4,7 +4,7 @@ import {
   StakeProgram,
   SystemProgram,
   ParsedInstruction,
-} from "@solana/web3.js";
+} from "@velas/web3";
 import { InstructionCard } from "../InstructionCard";
 import { Address } from "components/common/Address";
 import { InitializeInfo } from "./types";

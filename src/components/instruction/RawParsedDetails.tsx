@@ -1,5 +1,5 @@
 import React from "react";
-import { ParsedInstruction } from "@solana/web3.js";
+import { ParsedInstruction } from "@velas/web3";
 
 export function RawParsedDetails({
   ix,

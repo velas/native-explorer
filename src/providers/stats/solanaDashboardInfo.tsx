@@ -1,4 +1,4 @@
-import { EpochInfo, PerfSample } from "@solana/web3.js";
+import { EpochInfo, PerfSample } from "@velas/web3";
 import { ClusterStatsStatus } from "./solanaClusterStats";
 
 export type DashboardInfo = {

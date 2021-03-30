@@ -4,7 +4,7 @@ import {
   Connection,
   SignatureResult,
   TransactionConfirmationStatus,
-} from "@solana/web3.js";
+} from "@velas/web3";
 import { useCluster, Cluster } from "../cluster";
 import { DetailsProvider } from "./details";
 import * as Cache from "providers/cache";

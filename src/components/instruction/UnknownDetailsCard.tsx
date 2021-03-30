@@ -3,7 +3,7 @@ import {
   TransactionInstruction,
   SignatureResult,
   ParsedInstruction,
-} from "@solana/web3.js";
+} from "@velas/web3";
 import { InstructionCard } from "./InstructionCard";
 
 export function UnknownDetailsCard({
