@@ -12,7 +12,7 @@ export function Navbar() {
     <nav className="navbar navbar-expand-md navbar-light">
       <div className="container">
         <Link to={clusterPath("/")}>
-          <img src={Logo} width="250" alt="Solana Explorer" />
+          <img src={Logo} width="250" alt="Velas Native Explorer" />
         </Link>
 
         <button
@@ -24,9 +24,8 @@ export function Navbar() {
         </button>
 
         <div
-          className={`collapse navbar-collapse ml-auto mr-4 ${
-            collapse ? "show" : ""
-          }`}
+          className={`collapse navbar-collapse ml-auto mr-4 ${collapse ? "show" : ""
+            }`}
         >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
