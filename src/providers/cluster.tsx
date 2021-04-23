@@ -1,9 +1,22 @@
 import React from "react";
-import { clusterApiUrl, Connection } from "@velas/web3";
+import { Connection } from "@solana/web3.js";
 import { useQuery } from "../utils/url";
 import { useHistory, useLocation } from "react-router-dom";
 import { reportError } from "utils/sentry";
 import { localStorageIsAvailable } from "utils";
+
+export function clusterApiUrl(cluster: string): string {
+  switch (cluster) {
+    case "mainnet-beta":
+      return "https://mainnet.velas.com/rpc";
+    case "testnet":
+      return "https://testnet.velas.com/rpc";
+    case "devnet":
+      return "https://devnet.velas.com/rpc";
+    default:
+      return "https://mainnet.velas.com/rpc";
+  }
+}
 
 export enum ClusterStatus {
   Connected,
@@ -41,7 +54,7 @@ export function clusterSlug(cluster: Cluster): string {
 export function clusterName(cluster: Cluster): string {
   switch (cluster) {
     case Cluster.MainnetBeta:
-      return "Mainnet";
+      return "Mainnet Beta";
     case Cluster.Testnet:
       return "Testnet";
     case Cluster.Devnet:
