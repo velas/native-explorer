@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
+RUN apk add git
 RUN npm i
 RUN npm run build 
 
