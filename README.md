@@ -2,7 +2,7 @@
     <img alt="Solana" src="https://i.imgur.com/OMnvVEz.png" width="250" />
 </p>
 
-# Solana Explorer
+# Velas Explorer
 
 ## Development
 
