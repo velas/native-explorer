@@ -12,7 +12,7 @@ export function Navbar() {
     <nav className="navbar navbar-expand-md navbar-light">
       <div className="container">
         <Link to={clusterPath("/")}>
-          <img src={Logo} width="250" alt="Velas Native Explorer" />
+          <img src={Logo} height="30" alt="Velas Native Explorer" />
         </Link>
 
         <button
