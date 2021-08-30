@@ -1,5 +1,5 @@
 import React from "react";
-import { PublicKey } from "@velas/web3";
+import { PublicKey } from "@solana/web3.js";
 import { FetchStatus } from "providers/cache";
 import { useAccountInfo, useAccountHistory } from "providers/accounts";
 import { useFetchAccountHistory } from "providers/accounts/history";

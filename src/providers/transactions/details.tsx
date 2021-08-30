@@ -4,7 +4,7 @@ import {
   TransactionSignature,
   ParsedConfirmedTransaction,
   ConfirmedTransaction,
-} from "@velas/web3";
+} from "@solana/web3.js";
 import { useCluster, Cluster } from "../cluster";
 import * as Cache from "providers/cache";
 import { ActionType, FetchStatus } from "providers/cache";

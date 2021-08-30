@@ -4,7 +4,7 @@ import {
   ConfirmedSignatureInfo,
   ParsedInstruction,
   PartiallyDecodedInstruction,
-} from "@velas/web3";
+} from "@solana/web3.js";
 import { CacheEntry, FetchStatus } from "providers/cache";
 import {
   useAccountHistories,

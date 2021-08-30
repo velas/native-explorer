@@ -1,5 +1,5 @@
 import React from "react";
-import { PublicKey } from "@velas/web3";
+import { PublicKey } from "@solana/web3.js";
 import { LoadingCard } from "components/common/LoadingCard";
 import { ErrorCard } from "components/common/ErrorCard";
 import { Address } from "components/common/Address";

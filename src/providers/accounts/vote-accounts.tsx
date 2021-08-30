@@ -1,4 +1,4 @@
-import { Connection, VoteAccountStatus } from "@velas/web3";
+import { Connection, VoteAccountStatus } from "@solana/web3.js";
 import { Cluster, useCluster } from "providers/cluster";
 import React from "react";
 import { reportError } from "utils/sentry";

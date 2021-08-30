@@ -11,7 +11,7 @@ import {
   TransactionSignature,
   SystemProgram,
   SystemInstruction,
-} from "@velas/web3";
+} from "@solana/web3.js";
 import { lamportsToSolString } from "utils";
 import { ErrorCard } from "components/common/ErrorCard";
 import { LoadingCard } from "components/common/LoadingCard";

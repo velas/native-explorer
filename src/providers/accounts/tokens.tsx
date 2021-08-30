@@ -1,5 +1,5 @@
 import React from "react";
-import { Connection, PublicKey } from "@velas/web3";
+import { Connection, PublicKey } from "@solana/web3.js";
 import * as Cache from "providers/cache";
 import { ActionType, FetchStatus } from "providers/cache";
 import { TokenAccountInfo } from "validators/accounts/token";
