@@ -1,7 +1,7 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
 import * as Cache from "providers/cache";
-import { Connection, ConfirmedBlock } from "@velas/web3";
+import { Connection, ConfirmedBlock } from "@velas/solana-web3";
 import { useCluster, Cluster } from "./cluster";
 
 export enum FetchStatus {

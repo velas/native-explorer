@@ -4,7 +4,7 @@ import {
   PublicKey,
   TokenAmount,
   TokenBalance,
-} from "@velas/web3";
+} from "@velas/solana-web3";
 import { BigNumber } from "bignumber.js";
 import { Address } from "components/common/Address";
 import { BalanceDelta } from "components/common/BalanceDelta";

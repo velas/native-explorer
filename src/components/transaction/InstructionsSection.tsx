@@ -9,7 +9,7 @@ import {
   SignatureResult,
   Transaction,
   TransactionSignature,
-} from "@velas/web3";
+} from "@velas/solana-web3";
 import { BpfLoaderDetailsCard } from "components/instruction/bpf-loader/BpfLoaderDetailsCard";
 import { MemoDetailsCard } from "components/instruction/MemoDetailsCard";
 import { SerumDetailsCard } from "components/instruction/SerumDetailsCard";

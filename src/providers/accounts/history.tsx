@@ -4,7 +4,7 @@ import {
   ConfirmedSignatureInfo,
   TransactionSignature,
   Connection,
-} from "@velas/web3";
+} from "@velas/solana-web3";
 import { useCluster, Cluster } from "../cluster";
 import * as Cache from "providers/cache";
 import { ActionType, FetchStatus } from "providers/cache";

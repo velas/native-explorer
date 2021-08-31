@@ -4,7 +4,7 @@ import {
   ParsedInstruction,
   SignatureResult,
   PublicKey,
-} from "@velas/web3";
+} from "@velas/solana-web3";
 import { Address } from "components/common/Address";
 import { create, Struct } from "superstruct";
 import { camelToTitleCase } from "utils";

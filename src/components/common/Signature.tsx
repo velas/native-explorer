@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TransactionSignature } from "@velas/web3";
+import { TransactionSignature } from "@velas/solana-web3";
 import { clusterPath } from "utils/url";
 import { Copyable } from "./Copyable";
 

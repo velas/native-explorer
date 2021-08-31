@@ -1,5 +1,5 @@
 import React from "react";
-import { TransactionInstruction, SignatureResult } from "@velas/web3";
+import { TransactionInstruction, SignatureResult } from "@velas/solana-web3";
 import { InstructionCard } from "./InstructionCard";
 import { useCluster } from "providers/cluster";
 import { reportError } from "utils/sentry";

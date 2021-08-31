@@ -15,7 +15,7 @@ import {
   PartiallyDecodedInstruction,
   ParsedInstruction,
   Secp256k1Program,
-} from "@velas/web3";
+} from "@velas/solana-web3";
 import { Cluster } from "providers/cluster";
 import { SerumMarketRegistry } from "serumMarketRegistry";
 import { TokenInfoMap } from "@solana/spl-token-registry";
