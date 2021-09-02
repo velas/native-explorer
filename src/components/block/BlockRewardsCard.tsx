@@ -1,6 +1,6 @@
 import React from "react";
 import { lamportsToSolString } from "utils";
-import { ConfirmedBlock, PublicKey } from "@velas/solana-web3";
+import { ConfirmedBlock, PublicKey } from "@velas/web3";
 import { Address } from "components/common/Address";
 
 const PAGE_SIZE = 10;

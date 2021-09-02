@@ -7,7 +7,7 @@ import {
   Connection,
   TokenAccountBalancePair,
   ParsedAccountData,
-} from "@velas/solana-web3";
+} from "@velas/web3";
 import { TokenAccountInfo, TokenAccount } from "validators/accounts/token";
 import { ParsedInfo } from "validators";
 import { create } from "superstruct";

@@ -1,4 +1,4 @@
-import { PerfSample } from "@velas/solana-web3";
+import { PerfSample } from "@velas/web3";
 import { ClusterStatsStatus } from "./solanaClusterStats";
 
 export type PerformanceInfo = {

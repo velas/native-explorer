@@ -3,7 +3,7 @@ import {
   SignatureResult,
   StakeProgram,
   ParsedInstruction,
-} from "@velas/solana-web3";
+} from "@velas/web3";
 import { InstructionCard } from "../InstructionCard";
 import { Address } from "components/common/Address";
 import { MergeInfo } from "./types";

@@ -3,7 +3,7 @@ import {
   SystemProgram,
   SignatureResult,
   ParsedInstruction,
-} from "@velas/solana-web3";
+} from "@velas/web3";
 import { lamportsToSolString } from "utils";
 import { InstructionCard } from "../InstructionCard";
 import { Copyable } from "components/common/Copyable";

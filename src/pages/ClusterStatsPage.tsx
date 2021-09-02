@@ -12,7 +12,7 @@ import { ClusterStatus, useCluster } from "providers/cluster";
 import { TpsCard } from "components/TpsCard";
 import { displayTimestampWithoutDate, displayTimestampUtc } from "utils/date";
 import { Status, useFetchSupply, useSupply } from "providers/supply";
-import { PublicKey } from "@velas/solana-web3";
+import { PublicKey } from "@velas/web3";
 import { ErrorCard } from "components/common/ErrorCard";
 import { LoadingCard } from "components/common/LoadingCard";
 import { useAccountInfo, useFetchAccountInfo } from "providers/accounts";

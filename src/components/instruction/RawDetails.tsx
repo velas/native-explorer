@@ -1,5 +1,5 @@
 import React from "react";
-import { TransactionInstruction } from "@velas/solana-web3";
+import { TransactionInstruction } from "@velas/web3";
 import { Address } from "components/common/Address";
 
 export function RawDetails({ ix }: { ix: TransactionInstruction }) {

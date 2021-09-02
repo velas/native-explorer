@@ -1,5 +1,5 @@
 import React from "react";
-import { PublicKey, Connection, StakeActivationData } from "@velas/solana-web3";
+import { PublicKey, Connection, StakeActivationData } from "@velas/web3";
 import { useCluster, Cluster } from "../cluster";
 import { HistoryProvider } from "./history";
 import { TokensProvider } from "./tokens";

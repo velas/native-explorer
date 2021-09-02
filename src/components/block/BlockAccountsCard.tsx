@@ -1,5 +1,5 @@
 import React from "react";
-import { ConfirmedBlock, PublicKey } from "@velas/solana-web3";
+import { ConfirmedBlock, PublicKey } from "@velas/web3";
 import { Address } from "components/common/Address";
 
 type AccountStats = {
