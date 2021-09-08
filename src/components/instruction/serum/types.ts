@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-redeclare */
 
 import { decodeInstruction, MARKETS } from "@project-serum/serum";
-import { PublicKey, TransactionInstruction } from "@velas/web3";
+import { PublicKey, TransactionInstruction } from "@solana/web3.js";
 import BN from "bn.js";
 import { enums, number, optional, type, Infer, create } from "superstruct";
 import { BigNumFromString } from "validators/bignum";
@@ -334,6 +334,8 @@ const SERUM_CODE_LOOKUP: { [key: number]: string } = {
   11: "Cancel Order",
   12: "Cancel Order By Client Id",
   13: "Send Take",
+  14: "Close Open Orders",
+  15: "Init Open Orders",
 };
 
 export function parseSerumInstructionCode(instruction: TransactionInstruction) {

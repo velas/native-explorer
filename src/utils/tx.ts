@@ -15,12 +15,13 @@ import {
   PartiallyDecodedInstruction,
   ParsedInstruction,
   Secp256k1Program,
-} from "@velas/web3";
+} from "@solana/web3.js";
 import { Cluster } from "providers/cluster";
 import { SerumMarketRegistry } from "serumMarketRegistry";
 import { TokenInfoMap } from "@solana/spl-token-registry";
 
-export type ProgramName = typeof PROGRAM_NAME_BY_ID[keyof typeof PROGRAM_NAME_BY_ID];
+export type ProgramName =
+  typeof PROGRAM_NAME_BY_ID[keyof typeof PROGRAM_NAME_BY_ID];
 
 export enum PROGRAM_NAMES {
   // native built-ins
@@ -49,6 +50,7 @@ export enum PROGRAM_NAMES {
   SERUM_1 = "Serum Program v1",
   SERUM_2 = "Serum Program v2",
   SERUM_3 = "Serum Program v3",
+  MANGO_3 = "Mango Program v3",
 }
 
 const ALL_CLUSTERS = [
@@ -89,6 +91,7 @@ export const PROGRAM_DEPLOYMENTS = {
   [PROGRAM_NAMES.SERUM_1]: MAINNET_ONLY,
   [PROGRAM_NAMES.SERUM_2]: MAINNET_ONLY,
   [PROGRAM_NAMES.SERUM_3]: MAINNET_ONLY,
+  [PROGRAM_NAMES.MANGO_3]: MAINNET_ONLY,
 } as const;
 
 export const PROGRAM_NAME_BY_ID = {
@@ -120,6 +123,7 @@ export const PROGRAM_NAME_BY_ID = {
   BJ3jrUzddfuSrZHXSCxMUUQsjKEyLmuuyZebkcaFp2fg: PROGRAM_NAMES.SERUM_1,
   EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o: PROGRAM_NAMES.SERUM_2,
   "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": PROGRAM_NAMES.SERUM_3,
+  mv3ekLzLbnVPNxjSKvqBpU3ZeZXPQdEC3bp5MDEBG68: PROGRAM_NAMES.MANGO_3,
 } as const;
 
 export type LoaderName = typeof LOADER_IDS[keyof typeof LOADER_IDS];
@@ -131,7 +135,8 @@ export const LOADER_IDS = {
   BPFLoaderUpgradeab1e11111111111111111111111: "BPF Upgradeable Loader",
 } as const;
 
-const SYSVAR_ID: { [key: string]: string } = {
+export const SPECIAL_IDS: { [key: string]: string } = {
+  "1nc1nerator11111111111111111111111111111111": "Incinerator",
   Sysvar1111111111111111111111111111111111111: "SYSVAR",
 };
 
@@ -156,6 +161,8 @@ export function programLabel(
   if (programName && PROGRAM_DEPLOYMENTS[programName].includes(cluster)) {
     return programName;
   }
+
+  return LOADER_IDS[address];
 }
 
 export function tokenLabel(
@@ -178,9 +185,8 @@ export function addressLabel(
 ): string | undefined {
   return (
     programLabel(address, cluster) ||
-    LOADER_IDS[address] ||
     SYSVAR_IDS[address] ||
-    SYSVAR_ID[address] ||
+    SPECIAL_IDS[address] ||
     tokenLabel(address, tokenRegistry) ||
     SerumMarketRegistry.get(address, cluster)
   );

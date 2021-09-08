@@ -1,5 +1,5 @@
 import React from "react";
-import { PublicKey, Connection, StakeActivationData } from "@velas/web3";
+import { PublicKey, Connection, StakeActivationData } from "@solana/web3.js";
 import { useCluster, Cluster } from "../cluster";
 import { HistoryProvider } from "./history";
 import { TokensProvider } from "./tokens";
@@ -24,6 +24,7 @@ import {
   ProgramDataAccountInfo,
   UpgradeableLoaderAccount,
 } from "validators/accounts/upgradeable-program";
+import { RewardsProvider } from "./rewards";
 export { useAccountHistory } from "./history";
 
 export type StakeProgramData = {
@@ -75,7 +76,7 @@ export type ProgramData =
 export interface Details {
   executable: boolean;
   owner: PublicKey;
-  space?: number;
+  space: number;
   data?: ProgramData;
 }
 
@@ -106,7 +107,9 @@ export function AccountsProvider({ children }: AccountsProviderProps) {
       <DispatchContext.Provider value={dispatch}>
         <TokensProvider>
           <HistoryProvider>
-            <FlaggedAccountsProvider>{children}</FlaggedAccountsProvider>
+            <RewardsProvider>
+              <FlaggedAccountsProvider>{children}</FlaggedAccountsProvider>
+            </RewardsProvider>
           </HistoryProvider>
         </TokensProvider>
       </DispatchContext.Provider>
@@ -130,7 +133,7 @@ async function fetchAccountInfo(
   let data;
   let fetchStatus;
   try {
-    const connection = new Connection(url, "single");
+    const connection = new Connection(url, "confirmed");
     const result = (await connection.getParsedAccountInfo(pubkey)).value;
 
     let lamports, details;
@@ -140,7 +143,7 @@ async function fetchAccountInfo(
       lamports = result.lamports;
 
       // Only save data in memory if we can decode it
-      let space;
+      let space: number;
       if (!("parsed" in result.data)) {
         space = result.data.length;
       } else {

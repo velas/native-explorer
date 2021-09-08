@@ -12,7 +12,7 @@ import { ClusterStatus, useCluster } from "providers/cluster";
 import { TpsCard } from "components/TpsCard";
 import { displayTimestampWithoutDate, displayTimestampUtc } from "utils/date";
 import { Status, useFetchSupply, useSupply } from "providers/supply";
-import { PublicKey } from "@velas/web3";
+import { PublicKey } from "@solana/web3.js";
 import { ErrorCard } from "components/common/ErrorCard";
 import { LoadingCard } from "components/common/LoadingCard";
 import { useAccountInfo, useFetchAccountInfo } from "providers/accounts";
@@ -129,10 +129,85 @@ function StakingComponent() {
   }
 
   return (
-    <div className="card staking-card">
-      <div className="card-body">
-        <div className="d-flex flex-md-row flex-column">
-          <div className="p-2 flex-fill">
+    // <div className="card staking-card">
+    //   <div className="card-body">
+    //     <div className="d-flex flex-md-row flex-column">
+    //       <div className="p-2 flex-fill">
+    //         <h4>Circulating Supply</h4>
+    //         <h1>
+    //           <em>{displayLamports(supply.circulating)}</em> /{" "}
+    //           <small>{displayLamports(supply.total)}</small>
+    //         </h1>
+    //         <h5>
+    //           <em>{circulatingPercentage}%</em> is circulating
+    //         </h5>
+    //       </div>
+    //       <hr className="hidden-sm-up" />
+    //       <div className="p-2 flex-fill">
+    //         <h4>Active Stake</h4>
+    //         <h1>
+    //           <em>{displayLamports(stakeHistory.effective)}</em> /{" "}
+    //           <small>{displayLamports(supply.total)}</small>
+    //         </h1>
+    //         {delinquentStakePercentage && (
+    //           <h5>
+    //             Delinquent stake: <em>{delinquentStakePercentage}%</em>
+    //           </h5>
+    //         )}
+    //       </div>
+    //       <hr className="hidden-sm-up" />
+    //       {solanaInfo && (
+    //         <div className="p-2 flex-fill">
+    //           <h4>
+    //             Price{" "}
+    //             <span className="ml-2 badge badge-primary rank">
+    //               Rank #{solanaInfo.market_cap_rank}
+    //             </span>
+    //           </h4>
+    //           <h1>
+    //             <em>${solanaInfo.price.toFixed(2)}</em>{" "}
+    //             {solanaInfo.price_change_percentage_24h > 0 && (
+    //               <small className="change-positive">
+    //                 &uarr; {solanaInfo.price_change_percentage_24h.toFixed(2)}%
+    //               </small>
+    //             )}
+    //             {solanaInfo.price_change_percentage_24h < 0 && (
+    //               <small className="change-negative">
+    //                 &darr; {solanaInfo.price_change_percentage_24h.toFixed(2)}%
+    //               </small>
+    //             )}
+    //             {solanaInfo.price_change_percentage_24h === 0 && (
+    //               <small>0%</small>
+    //             )}
+    //           </h1>
+    //           <h5>
+    //             24h Vol: <em>${abbreviatedNumber(solanaInfo.volume_24)}</em>{" "}
+    //             MCap: <em>${abbreviatedNumber(solanaInfo.market_cap)}</em>
+    //           </h5>
+    //         </div>
+    //       )}
+    //       {coinInfo.status === CoingeckoStatus.FetchFailed && (
+    //         <div className="p-2 flex-fill">
+    //           <h4>Price</h4>
+    //           <h1>
+    //             <em>$--.--</em>
+    //           </h1>
+    //           <h5>Error fetching the latest price information</h5>
+    //         </div>
+    //       )}
+    //     </div>
+    //     {solanaInfo && (
+    //       <p className="updated-time text-muted mb-0">
+    //         Updated at{" "}
+    //         {displayTimestampWithoutDate(solanaInfo.last_updated.getTime())}
+    //       </p>
+    //     )}
+    //   </div>
+    // </div>
+    <div className="row staking-card">
+      <div className="col-12 col-lg-4 col-xl">
+        <div className="card">
+          <div className="card-body">
             <h4>Circulating Supply</h4>
             <h1>
               <em>{displayLamports(supply.circulating)}</em> /{" "}
@@ -142,8 +217,11 @@ function StakingComponent() {
               <em>{circulatingPercentage}%</em> is circulating
             </h5>
           </div>
-          <hr className="hidden-sm-up" />
-          <div className="p-2 flex-fill">
+        </div>
+      </div>
+      <div className="col-12 col-lg-4 col-xl">
+        <div className="card">
+          <div className="card-body">
             <h4>Active Stake</h4>
             <h1>
               <em>{displayLamports(stakeHistory.effective)}</em> /{" "}
@@ -155,53 +233,60 @@ function StakingComponent() {
               </h5>
             )}
           </div>
-          <hr className="hidden-sm-up" />
-          {solanaInfo && (
-            <div className="p-2 flex-fill">
-              <h4>
-                Price{" "}
-                <span className="ml-2 badge badge-primary rank">
-                  Rank #{solanaInfo.market_cap_rank}
-                </span>
-              </h4>
-              <h1>
-                <em>${solanaInfo.price.toFixed(2)}</em>{" "}
-                {solanaInfo.price_change_percentage_24h > 0 && (
-                  <small className="change-positive">
-                    &uarr; {solanaInfo.price_change_percentage_24h.toFixed(2)}%
-                  </small>
-                )}
-                {solanaInfo.price_change_percentage_24h < 0 && (
-                  <small className="change-negative">
-                    &darr; {solanaInfo.price_change_percentage_24h.toFixed(2)}%
-                  </small>
-                )}
-                {solanaInfo.price_change_percentage_24h === 0 && (
-                  <small>0%</small>
-                )}
-              </h1>
-              <h5>
-                24h Vol: <em>${abbreviatedNumber(solanaInfo.volume_24)}</em>{" "}
-                MCap: <em>${abbreviatedNumber(solanaInfo.market_cap)}</em>
-              </h5>
-            </div>
-          )}
-          {coinInfo.status === CoingeckoStatus.FetchFailed && (
-            <div className="p-2 flex-fill">
-              <h4>Price</h4>
-              <h1>
-                <em>$--.--</em>
-              </h1>
-              <h5>Error fetching the latest price information</h5>
-            </div>
-          )}
         </div>
-        {solanaInfo && (
-          <p className="updated-time text-muted mb-0">
-            Updated at{" "}
-            {displayTimestampWithoutDate(solanaInfo.last_updated.getTime())}
-          </p>
-        )}
+      </div>
+      <div className="col-12 col-lg-4 col-xl">
+        <div className="card">
+          <div className="card-body">
+            {solanaInfo && (
+              <>
+                <h4>
+                  Price{" "}
+                  <span className="ml-2 badge badge-primary rank">
+                    Rank #{solanaInfo.market_cap_rank}
+                  </span>
+                </h4>
+                <h1>
+                  <em>${solanaInfo.price.toFixed(2)}</em>{" "}
+                  {solanaInfo.price_change_percentage_24h > 0 && (
+                    <small className="change-positive">
+                      &uarr; {solanaInfo.price_change_percentage_24h.toFixed(2)}
+                      %
+                    </small>
+                  )}
+                  {solanaInfo.price_change_percentage_24h < 0 && (
+                    <small className="change-negative">
+                      &darr; {solanaInfo.price_change_percentage_24h.toFixed(2)}
+                      %
+                    </small>
+                  )}
+                  {solanaInfo.price_change_percentage_24h === 0 && (
+                    <small>0%</small>
+                  )}
+                </h1>
+                <h5>
+                  24h Vol: <em>${abbreviatedNumber(solanaInfo.volume_24)}</em>{" "}
+                  MCap: <em>${abbreviatedNumber(solanaInfo.market_cap)}</em>
+                </h5>
+              </>
+            )}
+            {coinInfo.status === CoingeckoStatus.FetchFailed && (
+              <>
+                <h4>Price</h4>
+                <h1>
+                  <em>$--.--</em>
+                </h1>
+                <h5>Error fetching the latest price information</h5>
+              </>
+            )}
+            {solanaInfo && (
+              <p className="updated-time text-muted">
+                Updated at{" "}
+                {displayTimestampWithoutDate(solanaInfo.last_updated.getTime())}
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

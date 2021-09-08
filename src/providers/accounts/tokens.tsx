@@ -1,5 +1,5 @@
 import React from "react";
-import { Connection, PublicKey } from "@velas/web3";
+import { Connection, PublicKey } from "@solana/web3.js";
 import * as Cache from "providers/cache";
 import { ActionType, FetchStatus } from "providers/cache";
 import { TokenAccountInfo } from "validators/accounts/token";
@@ -63,7 +63,7 @@ async function fetchAccountTokens(
   try {
     const { value } = await new Connection(
       url,
-      "recent"
+      "processed"
     ).getParsedTokenAccountsByOwner(pubkey, { programId: TOKEN_PROGRAM_ID });
     data = {
       tokens: value.map((accountInfo) => {

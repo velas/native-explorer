@@ -1,6 +1,6 @@
 import React from "react";
 import { TableCardBody } from "components/common/TableCardBody";
-import { lamportsToSolString } from "utils";
+import { SolBalance } from "utils";
 import { displayTimestampUtc } from "utils/date";
 import { Account, useFetchAccountInfo } from "providers/accounts";
 import { Address } from "components/common/Address";
@@ -10,7 +10,7 @@ import {
   StakeAccountType,
 } from "validators/accounts/stake";
 import BN from "bn.js";
-import { StakeActivationData } from "@velas/web3";
+import { StakeActivationData } from "@solana/web3.js";
 
 const MAX_EPOCH = new BN(2).pow(new BN(64)).sub(new BN(1));
 
@@ -25,6 +25,9 @@ export function StakeAccountSection({
   stakeAccountType: StakeAccountType;
   activation?: StakeActivationData;
 }) {
+  const hideDelegation =
+    stakeAccountType !== "delegated" ||
+    isFullyInactivated(stakeAccount, activation);
   return (
     <>
       <LockupCard stakeAccount={stakeAccount} />
@@ -32,17 +35,17 @@ export function StakeAccountSection({
         account={account}
         stakeAccount={stakeAccount}
         stakeAccountType={stakeAccountType}
+        activation={activation}
+        hideDelegation={hideDelegation}
       />
-      {stakeAccount.meta && (
-        <>
-          <DelegationCard
-            stakeAccount={stakeAccount}
-            activation={activation}
-            stakeAccountType={stakeAccountType}
-          />
-          <AuthoritiesCard meta={stakeAccount.meta} />
-        </>
+      {!hideDelegation && (
+        <DelegationCard
+          stakeAccount={stakeAccount}
+          activation={activation}
+          stakeAccountType={stakeAccountType}
+        />
       )}
+      <AuthoritiesCard meta={stakeAccount.meta} />
     </>
   );
 }
@@ -68,14 +71,33 @@ const TYPE_NAMES = {
   rewardsPool: "RewardsPool",
 };
 
+function displayStatus(
+  stakeAccountType: StakeAccountType,
+  activation?: StakeActivationData
+) {
+  let status = TYPE_NAMES[stakeAccountType];
+  let activationState = "";
+  if (stakeAccountType !== "delegated") {
+    status = "Not delegated";
+  } else {
+    activationState = activation ? `(${activation.state})` : "";
+  }
+
+  return [status, activationState].join(" ");
+}
+
 function OverviewCard({
   account,
   stakeAccount,
   stakeAccountType,
+  activation,
+  hideDelegation,
 }: {
   account: Account;
   stakeAccount: StakeAccountInfo;
   stakeAccountType: StakeAccountType;
+  activation?: StakeActivationData;
+  hideDelegation: boolean;
 }) {
   const refresh = useFetchAccountInfo();
   return (
@@ -103,21 +125,24 @@ function OverviewCard({
         <tr>
           <td>Balance (VLX)</td>
           <td className="text-lg-right text-uppercase">
-            {lamportsToSolString(account.lamports || 0)}
+            <SolBalance lamports={account.lamports || 0} />
           </td>
         </tr>
-        {stakeAccount.meta && (
+        <tr>
+          <td>Rent Reserve (VLX)</td>
+          <td className="text-lg-right">
+            <SolBalance lamports={stakeAccount.meta.rentExemptReserve} />
+          </td>
+        </tr>
+        {hideDelegation && (
           <tr>
             <td>Rent Reserve (VLX)</td>
-            <td className="text-lg-right">
-              {lamportsToSolString(stakeAccount.meta.rentExemptReserve)}
-            </td>
-          </tr>
-        )}
-        {!stakeAccount.meta && (
-          <tr>
-            <td>State</td>
-            <td className="text-lg-right">{TYPE_NAMES[stakeAccountType]}</td>
+            <td>Status</td>
+            {/* <td className="text-lg-right">
+              {isFullyInactivated(stakeAccount, activation)
+                ? "Not delegated"
+                : displayStatus(stakeAccountType, activation)}
+            </td> */}
           </tr>
         )}
       </TableCardBody>
@@ -134,18 +159,6 @@ function DelegationCard({
   stakeAccountType: StakeAccountType;
   activation?: StakeActivationData;
 }) {
-  const displayStatus = () => {
-    let status = TYPE_NAMES[stakeAccountType];
-    let activationState = "";
-    if (stakeAccountType !== "delegated") {
-      status = "Not delegated";
-    } else {
-      activationState = activation ? `(${activation.state})` : "";
-    }
-
-    return [status, activationState].join(" ");
-  };
-
   let voterPubkey, activationEpoch, deactivationEpoch;
   const delegation = stakeAccount?.stake?.delegation;
   if (delegation) {
@@ -157,7 +170,6 @@ function DelegationCard({
       ? "-"
       : delegation.deactivationEpoch.toString();
   }
-
   const { stake } = stakeAccount;
   return (
     <div className="card">
@@ -169,7 +181,9 @@ function DelegationCard({
       <TableCardBody>
         <tr>
           <td>Status</td>
-          <td className="text-lg-right">{displayStatus()}</td>
+          <td className="text-lg-right">
+            {displayStatus(stakeAccountType, activation)}
+          </td>
         </tr>
 
         {stake && (
@@ -177,7 +191,7 @@ function DelegationCard({
             <tr>
               <td>Delegated Stake (VLX)</td>
               <td className="text-lg-right">
-                {lamportsToSolString(stake.delegation.stake)}
+                <SolBalance lamports={stake.delegation.stake} />
               </td>
             </tr>
 
@@ -186,14 +200,14 @@ function DelegationCard({
                 <tr>
                   <td>Active Stake (VLX)</td>
                   <td className="text-lg-right">
-                    {lamportsToSolString(activation.active)}
+                    <SolBalance lamports={activation.active} />
                   </td>
                 </tr>
 
                 <tr>
                   <td>Inactive Stake (VLX)</td>
                   <td className="text-lg-right">
-                    {lamportsToSolString(activation.inactive)}
+                    <SolBalance lamports={activation.inactive} />
                   </td>
                 </tr>
               </>
@@ -225,7 +239,7 @@ function DelegationCard({
 }
 
 function AuthoritiesCard({ meta }: { meta: StakeMeta }) {
-  const hasLockup = meta && meta.lockup.unixTimestamp > 0;
+  const hasLockup = meta.lockup.unixTimestamp > 0;
   return (
     <div className="card">
       <div className="card-header">
@@ -259,4 +273,17 @@ function AuthoritiesCard({ meta }: { meta: StakeMeta }) {
       </TableCardBody>
     </div>
   );
+}
+
+function isFullyInactivated(
+  stakeAccount: StakeAccountInfo,
+  activation?: StakeActivationData
+): boolean {
+  const { stake } = stakeAccount;
+
+  if (!stake || !activation) {
+    return false;
+  }
+
+  return stake.delegation.stake.toString() === activation.inactive.toString();
 }

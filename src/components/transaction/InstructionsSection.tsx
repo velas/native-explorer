@@ -7,9 +7,8 @@ import {
   PartiallyDecodedInstruction,
   PublicKey,
   SignatureResult,
-  Transaction,
   TransactionSignature,
-} from "@velas/web3";
+} from "@solana/web3.js";
 import { BpfLoaderDetailsCard } from "components/instruction/bpf-loader/BpfLoaderDetailsCard";
 import { MemoDetailsCard } from "components/instruction/MemoDetailsCard";
 import { SerumDetailsCard } from "components/instruction/SerumDetailsCard";
@@ -20,6 +19,7 @@ import { TokenLendingDetailsCard } from "components/instruction/TokenLendingDeta
 import { TokenSwapDetailsCard } from "components/instruction/TokenSwapDetailsCard";
 import { WormholeDetailsCard } from "components/instruction/WormholeDetailsCard";
 import { UnknownDetailsCard } from "components/instruction/UnknownDetailsCard";
+import { BonfidaBotDetailsCard } from "components/instruction/BonfidaBotDetails";
 import {
   SignatureProps,
   INNER_INSTRUCTIONS_START_SLOT,
@@ -28,7 +28,8 @@ import { intoTransactionInstruction } from "utils/tx";
 import { isSerumInstruction } from "components/instruction/serum/types";
 import { isTokenLendingInstruction } from "components/instruction/token-lending/types";
 import { isTokenSwapInstruction } from "components/instruction/token-swap/types";
-import { useFetchTransactionDetails } from "providers/transactions/details";
+import { isBonfidaBotInstruction } from "components/instruction/bonfida-bot/types";
+import { useFetchTransactionDetails } from "providers/transactions/parsed";
 import {
   useTransactionDetails,
   useTransactionStatus,
@@ -37,6 +38,9 @@ import { Cluster, useCluster } from "providers/cluster";
 import { BpfUpgradeableLoaderDetailsCard } from "components/instruction/bpf-upgradeable-loader/BpfUpgradeableLoaderDetailsCard";
 import { VoteDetailsCard } from "components/instruction/vote/VoteDetailsCard";
 import { isWormholeInstruction } from "components/instruction/wormhole/types";
+import { AssociatedTokenDetailsCard } from "components/instruction/AssociatedTokenDetailsCard";
+import { isMangoInstruction } from "components/instruction/mango/types";
+import { MangoDetailsCard } from "components/instruction/MangoDetails";
 
 export type InstructionDetailsProps = {
   tx: ParsedTransaction;
@@ -55,8 +59,6 @@ export function InstructionsSection({ signature }: SignatureProps) {
   const refreshDetails = () => fetchDetails(signature);
 
   if (!status?.data?.info || !details?.data?.transaction) return null;
-
-  const raw = details.data.raw?.transaction;
 
   const { transaction } = details.data.transaction;
   const { meta } = details.data.transaction;
@@ -103,7 +105,6 @@ export function InstructionsSection({ signature }: SignatureProps) {
             signature,
             tx: transaction,
             childIndex,
-            raw,
           });
 
           innerCards.push(res);
@@ -117,7 +118,6 @@ export function InstructionsSection({ signature }: SignatureProps) {
         signature,
         tx: transaction,
         innerCards,
-        raw,
       });
     }
   );
@@ -144,7 +144,6 @@ function renderInstructionCard({
   signature,
   innerCards,
   childIndex,
-  raw,
 }: {
   ix: ParsedInstruction | PartiallyDecodedInstruction;
   tx: ParsedTransaction;
@@ -153,7 +152,6 @@ function renderInstructionCard({
   signature: TransactionSignature;
   innerCards?: JSX.Element[];
   childIndex?: number;
-  raw?: Transaction;
 }) {
   const key = `${index}-${childIndex}`;
 
@@ -181,6 +179,8 @@ function renderInstructionCard({
         return <StakeDetailsCard {...props} />;
       case "spl-memo":
         return <MemoDetailsCard {...props} />;
+      case "spl-associated-token-account":
+        return <AssociatedTokenDetailsCard {...props} />;
       case "vote":
         return <VoteDetailsCard {...props} />;
       default:
@@ -208,7 +208,11 @@ function renderInstructionCard({
     childIndex,
   };
 
-  if (isSerumInstruction(transactionIx)) {
+  if (isBonfidaBotInstruction(transactionIx)) {
+    return <BonfidaBotDetailsCard key={key} {...props} />;
+  } else if (isMangoInstruction(transactionIx)) {
+    return <MangoDetailsCard key={key} {...props} />;
+  } else if (isSerumInstruction(transactionIx)) {
     return <SerumDetailsCard key={key} {...props} />;
   } else if (isTokenSwapInstruction(transactionIx)) {
     return <TokenSwapDetailsCard key={key} {...props} />;

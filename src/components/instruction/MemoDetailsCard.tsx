@@ -1,5 +1,5 @@
 import React from "react";
-import { ParsedInstruction, SignatureResult } from "@velas/web3";
+import { ParsedInstruction, SignatureResult } from "@solana/web3.js";
 import { InstructionCard } from "./InstructionCard";
 import { wrap } from "utils";
 import { Address } from "components/common/Address";
