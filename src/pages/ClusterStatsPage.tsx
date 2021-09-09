@@ -208,7 +208,9 @@ function StakingComponent() {
       <div className="col-12 col-lg-4 col-xl">
         <div className="card">
           <div className="card-body">
-            <h4>Circulating Supply</h4>
+            <h4>Circulating Supply
+            <span className="ml-2 badge badge-primary rank" style={{opacity: 0.0}}>{displayLamports(supply.circulating)}</span>
+            </h4>
             <h1>
               <em>{displayLamports(supply.circulating)}</em> /{" "}
               <small>{displayLamports(supply.total)}</small>
@@ -222,7 +224,9 @@ function StakingComponent() {
       <div className="col-12 col-lg-4 col-xl">
         <div className="card">
           <div className="card-body">
-            <h4>Active Stake</h4>
+            <h4>Active Stake{" "}
+                  <span className="ml-2 badge badge-primary rank" style={{opacity: 0.0}}>{displayLamports(stakeHistory.effective)}</span>
+                  </h4>
             <h1>
               <em>{displayLamports(stakeHistory.effective)}</em> /{" "}
               <small>{displayLamports(supply.total)}</small>

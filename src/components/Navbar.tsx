@@ -7,7 +7,7 @@ import { ClusterStatusButton } from "components/ClusterStatusButton";
 export function Navbar() {
   // TODO: use `collapsing` to animate collapsible navbar
   const [collapse, setCollapse] = React.useState(false);
-
+  
   return (
     <nav className="navbar navbar-expand-md navbar-light">
       <div className="container">
@@ -27,7 +27,7 @@ export function Navbar() {
           className={`collapse navbar-collapse ml-auto mr-4 ${collapse ? "show" : ""
             }`}
         >
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav mr-auto tabs">
             <li className="nav-item">
               <NavLink className="nav-link" to={clusterPath("/")} exact>
                 Cluster Stats
@@ -42,6 +42,16 @@ export function Navbar() {
               <NavLink className="nav-link" to={clusterPath("/tx/inspector")}>
                 Inspector
               </NavLink>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link url-link" href="https://velasvalidators.com" target="_blank" rel="noreferrer">
+                Velas Validators
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link url-link" href="https://velasity.com/" target="_blank" rel="noreferrer">
+                Velasity
+              </a>
             </li>
           </ul>
         </div>

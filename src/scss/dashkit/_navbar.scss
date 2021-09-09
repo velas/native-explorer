@@ -12,7 +12,13 @@
   border-width: 0 0 $border-width 0;
   border-style: solid;
 }
-
+a.nav-link.url-link {
+  color: #8a8dba !important;
+}
+a.nav-link.url-link:hover {
+  color: #8a8dba !important;
+  text-decoration: underline !important;
+}
 
 // Navbar dark
 
