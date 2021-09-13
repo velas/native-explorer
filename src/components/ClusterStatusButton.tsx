@@ -49,7 +49,7 @@ function Button() {
 
     case ClusterStatus.Connecting:
       return (
-        <span className={btnClasses("warning")}>
+        <span className={btnClasses("primary")}>
           <span
             className={spinnerClasses}
             role="status"

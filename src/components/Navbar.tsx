@@ -53,6 +53,11 @@ export function Navbar() {
                 Velasity
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link url-link" href="https://evmexplorer.velas.com/" target="_blank" rel="noreferrer">
+                EVM Explorer
+              </a>
+            </li>
           </ul>
         </div>
 
