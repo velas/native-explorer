@@ -1,4 +1,4 @@
-import { SignatureResult, TransactionInstruction } from "@solana/web3.js";
+import { SignatureResult, TransactionInstruction } from "@velas/web3";
 import moment from "moment";
 import { useCluster } from "providers/cluster";
 import { useEffect, useState } from "react";

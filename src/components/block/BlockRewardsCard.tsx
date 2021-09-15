@@ -1,6 +1,6 @@
 import React from "react";
 import { SolBalance } from "utils";
-import { BlockResponse, PublicKey } from "@solana/web3.js";
+import { BlockResponse, PublicKey } from "@velas/web3";
 import { Address } from "components/common/Address";
 
 const PAGE_SIZE = 10;

@@ -7,7 +7,7 @@ import { Slot } from "components/common/Slot";
 import { ClusterStatus, useCluster } from "providers/cluster";
 import { BlockHistoryCard } from "./BlockHistoryCard";
 import { BlockRewardsCard } from "./BlockRewardsCard";
-import { BlockResponse } from "@solana/web3.js";
+import { BlockResponse } from "@velas/web3";
 import { NavLink } from "react-router-dom";
 import { clusterPath } from "utils/url";
 import { BlockProgramsCard } from "./BlockProgramsCard";

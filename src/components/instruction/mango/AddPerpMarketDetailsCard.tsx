@@ -1,4 +1,4 @@
-import { SignatureResult, TransactionInstruction } from "@solana/web3.js";
+import { SignatureResult, TransactionInstruction } from "@velas/web3";
 import moment from "moment";
 import { InstructionCard } from "../InstructionCard";
 import { AddPerpMarket } from "./types";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Message, PACKET_DATA_SIZE } from "@solana/web3.js";
+import { Message, PACKET_DATA_SIZE } from "@velas/web3";
 
 import { TableCardBody } from "components/common/TableCardBody";
 import { SolBalance } from "utils";

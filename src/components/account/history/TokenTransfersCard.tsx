@@ -4,7 +4,7 @@ import {
   ParsedInstruction,
   PartiallyDecodedInstruction,
   PublicKey,
-} from "@solana/web3.js";
+} from "@velas/web3";
 import { useAccountHistory } from "providers/accounts";
 import { useTokenRegistry } from "providers/mints/token-registry";
 import { create } from "superstruct";

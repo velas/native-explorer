@@ -1,5 +1,5 @@
 import { coerce, instance, string } from "superstruct";
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@velas/web3";
 
 export const PublicKeyFromString = coerce(
   instance(PublicKey),

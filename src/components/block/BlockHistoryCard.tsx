@@ -1,5 +1,5 @@
 import React from "react";
-import { BlockResponse } from "@solana/web3.js";
+import { BlockResponse } from "@velas/web3";
 import { ErrorCard } from "components/common/ErrorCard";
 import { Signature } from "components/common/Signature";
 

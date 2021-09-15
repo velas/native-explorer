@@ -1,7 +1,7 @@
 import React from "react";
 import { SignatureProps } from "pages/TransactionDetailsPage";
 import { useTransactionDetails } from "providers/transactions";
-import { TransactionError } from "@solana/web3.js";
+import { TransactionError } from "@velas/web3";
 
 const transactionErrorMessage: Map<string, string> = new Map([
   ["AccountInUse", "Account in use"],

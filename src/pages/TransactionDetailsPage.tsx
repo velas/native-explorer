@@ -12,7 +12,7 @@ import {
   TransactionSignature,
   SystemProgram,
   SystemInstruction,
-} from "@solana/web3.js";
+} from "@velas/web3";
 import { SolBalance } from "utils";
 import { ErrorCard } from "components/common/ErrorCard";
 import { LoadingCard } from "components/common/LoadingCard";

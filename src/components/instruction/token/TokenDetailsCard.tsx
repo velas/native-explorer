@@ -5,7 +5,7 @@ import {
   ParsedTransaction,
   PublicKey,
   ParsedInstruction,
-} from "@solana/web3.js";
+} from "@velas/web3";
 
 import { UnknownDetailsCard } from "../UnknownDetailsCard";
 import { InstructionCard } from "../InstructionCard";

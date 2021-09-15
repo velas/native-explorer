@@ -1,4 +1,4 @@
-import { TransactionInstruction } from "@solana/web3.js";
+import { TransactionInstruction } from "@velas/web3";
 
 export const PROGRAM_IDS: string[] = [
   "LendZqTs7gn5CTSJU1jWKhKuVpjJGom45nnwPb2AMTi", // mainnet / testnet / devnet

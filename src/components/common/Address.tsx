@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@velas/web3";
 import { clusterPath } from "utils/url";
 import { displayAddress } from "utils/tx";
 import { useCluster } from "providers/cluster";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Message, PublicKey } from "@solana/web3.js";
+import { Message, PublicKey } from "@velas/web3";
 import { TableCardBody } from "components/common/TableCardBody";
 import { AddressWithContext } from "./AddressWithContext";
 import { ErrorCard } from "components/common/ErrorCard";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Connection } from "@solana/web3.js";
+import { Connection } from "@velas/web3";
 import { useCluster, Cluster } from "providers/cluster";
 import {
   DashboardInfo,

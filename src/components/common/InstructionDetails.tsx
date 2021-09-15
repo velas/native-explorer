@@ -1,5 +1,5 @@
 import React from "react";
-import { ConfirmedSignatureInfo } from "@solana/web3.js";
+import { ConfirmedSignatureInfo } from "@velas/web3";
 import {
   getTokenProgramInstructionName,
   InstructionType,

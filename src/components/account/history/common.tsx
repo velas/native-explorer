@@ -1,4 +1,4 @@
-import { ParsedConfirmedTransaction } from "@solana/web3.js";
+import { ParsedConfirmedTransaction } from "@velas/web3";
 
 export type MintDetails = {
   decimals: number;

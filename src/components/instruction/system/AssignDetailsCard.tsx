@@ -3,7 +3,7 @@ import {
   SystemProgram,
   SignatureResult,
   ParsedInstruction,
-} from "@solana/web3.js";
+} from "@velas/web3";
 import { InstructionCard } from "../InstructionCard";
 import { Address } from "components/common/Address";
 import { AssignInfo } from "./types";

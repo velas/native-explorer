@@ -1,5 +1,5 @@
 import React from "react";
-import { Connection } from "@solana/web3.js";
+import { Connection } from "@velas/web3";
 import { useQuery } from "../utils/url";
 import { useHistory, useLocation } from "react-router-dom";
 import { reportError } from "utils/sentry";
