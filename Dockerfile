@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN apk add --update git openssh-client python3 && \
+RUN apk add --update git openssh-client python3 make gcc g++ && \
     mkdir -p ~/.ssh/ && \
     ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 RUN npm i
