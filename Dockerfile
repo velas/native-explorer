@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN apk add git
+RUN apk add git openssh
 RUN npm i
 RUN npm run build 
 
