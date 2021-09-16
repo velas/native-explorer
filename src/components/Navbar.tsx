@@ -45,12 +45,12 @@ export function Navbar() {
             </li>
             <li className="nav-item">
               <a className="nav-link url-link" href="https://velasvalidators.com" target="_blank" rel="noreferrer">
-                Velas Validators
+              velasvalidators.com
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link url-link" href="https://velasity.com/" target="_blank" rel="noreferrer">
-                Velasity
+              velasity.com
               </a>
             </li>
             <li className="nav-item">
