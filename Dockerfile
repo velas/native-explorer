@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . /app
 
 RUN apk add git
-RUN sudo apt-get install ssh
+RUN apk add --update openssh
 RUN npm i
 RUN npm run build 
 
