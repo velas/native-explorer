@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . /app
 
 RUN apk add git
-RUN apk add --update openssh
+RUN apk add --update openssh-client && ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 RUN npm i
 RUN npm run build 
 
