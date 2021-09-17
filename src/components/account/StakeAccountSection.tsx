@@ -136,13 +136,12 @@ function OverviewCard({
         </tr>
         {hideDelegation && (
           <tr>
-            <td>Rent Reserve (VLX)</td>
             <td>Status</td>
-            {/* <td className="text-lg-right">
+            <td className="text-lg-right">
               {isFullyInactivated(stakeAccount, activation)
                 ? "Not delegated"
                 : displayStatus(stakeAccountType, activation)}
-            </td> */}
+            </td>
           </tr>
         )}
       </TableCardBody>
