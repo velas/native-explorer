@@ -78,7 +78,7 @@ export function TopAccountsCard() {
         {richList === Status.Idle && (
           <div className="card-body">
             <span
-              className="btn btn-white ml-3 d-none d-md-inline"
+              className="btn btn-white ml-3 d-none d-md-inline load-account-btn"
               onClick={fetchRichList}
             >
               Load Largest Accounts
@@ -120,7 +120,7 @@ const renderAccountRow = (
   return (
     <tr key={index}>
       <td>
-        <span className="badge badge-soft-light badge-pill">{index + 1}</span>
+        <span>{index + 1}</span>
       </td>
       <td>
         <Address pubkey={account.address} link />
@@ -187,7 +187,7 @@ const FilterDropdown = ({ filter, toggle, show }: DropdownProps) => {
 
   const FILTERS: Filter[] = ["all", null, "nonCirculating"];
   return (
-    <div className="dropdown">
+    <div className="dropdown filter-btn">
       <button
         className="btn btn-white btn-sm dropdown-toggle"
         type="button"
