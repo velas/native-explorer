@@ -66,23 +66,15 @@ export function TopAccountsCard() {
         <div className="dropdown-exit" onClick={() => setDropdown(false)} />
       )}
 
+      <div className="d-flex justify-content-between">
+        <h3 className="card-title pt-3">LARGEST ACCOUNTS</h3>
+        <FilterDropdown
+          filter={filter}
+          toggle={() => setDropdown((show) => !show)}
+          show={showDropdown}
+        />
+      </div>
       <div className="card">
-        <div className="card-header">
-          <div className="row align-items-center">
-            <div className="col">
-              <h4 className="card-header-title">Largest Accounts</h4>
-            </div>
-
-            <div className="col-auto">
-              <FilterDropdown
-                filter={filter}
-                toggle={() => setDropdown((show) => !show)}
-                show={showDropdown}
-              />
-            </div>
-          </div>
-        </div>
-
         {richList === Status.Idle && (
           <div className="card-body">
             <span

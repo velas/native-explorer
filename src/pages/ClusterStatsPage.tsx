@@ -44,21 +44,16 @@ export function ClusterStatsPage() {
     <div className="container-fluid mt-4">
       <div className="row">
         <div className="col-12">
+          <h3 className="mt-3 card-title">CURRENT STATUS</h3>
           <StakingComponent />
         </div>
-        <div className="col-12 col-xl-6">
+        <div className="col-12 col-xl-7">
+          <h3 className="mt-3 card-title">LIVE CLUSTER STATS</h3>
           <div className="card">
-            <div className="card-header">
-              <div className="row align-items-center">
-                <div className="col">
-                  <h4 className="card-header-title">Live Cluster Stats</h4>
-                </div>
-              </div>
-            </div>
             <StatsCardBody />
           </div>
         </div>
-        <div className="col-12 col-xl-6">
+        <div className="col-12 col-xl-5">
           <TpsCard />
         </div>
       </div>

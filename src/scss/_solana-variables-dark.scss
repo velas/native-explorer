@@ -7,6 +7,8 @@
 // Remove the "//" to comment it in and see it in action!
 $body-bg: #141C2B !default;
 $sidebar-bg: #1C273C !default;
+$card-button-active-bg: #3B4863 !default;
+$card-button-bg: #283143 !default;
 
 $black: #232323;
 $white: #fff !default;
@@ -32,3 +34,6 @@ $theme-colors: (
   "gray": $gray-600,
   "gray-dark": $gray-800-dark,
 );
+
+$sidebar-text-color: $white;
+$text-color: #8392a5;

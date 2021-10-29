@@ -7,6 +7,10 @@
 //
 // General styles
 
+.dark .main-content {
+  background-color: #141C2B;
+}
+
 .navbar-vertical:not([style*="display: none"]) ~  .main-content,
 .navbar-vertical-sm:not([style*="display: none"]) ~  .main-content {
 

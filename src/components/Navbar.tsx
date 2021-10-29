@@ -1,15 +1,13 @@
 import React from "react";
 import Switch from 'react-switch';
-import { ClusterStatusButton } from "components/ClusterStatusButton";
+import {ClusterStatusButton} from "components/ClusterStatusButton";
 import {SearchBar} from "./SearchBar";
+import {IProps, ThemeMode} from "../index";
 
 
-export function Navbar() {
+export function Navbar(props: IProps) {
+  const { themeMode, switchTheme } = props;
   // TODO: use `collapsing` to animate collapsible navbar
-  const [switchStatus, setSwitchStatus] = React.useState<boolean>(false);
-  const handleThemeSwitch = ():void => {
-    setSwitchStatus(!switchStatus);
-  }
 
   return (
     <nav className="navbar navbar-expand-md navbar-light px-0 px-md-2 px-lg-3 py-0">
@@ -19,8 +17,8 @@ export function Navbar() {
         </div>
         <div className="mr-5 d-flex">
           <Switch
-            checked={switchStatus}
-            onChange={handleThemeSwitch}
+            checked={ themeMode === ThemeMode.light}
+            onChange={ () => {switchTheme()} }
             checkedIcon={false}
             uncheckedIcon={false}
             onColor="#fff"

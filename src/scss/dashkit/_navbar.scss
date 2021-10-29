@@ -190,6 +190,10 @@ a.nav-link.url-link:hover {
   border-color: $navbar-light-border-color;
 }
 
+.dark .navbar-light {
+  border-color: #152E4DFF;
+}
+
 .navbar-light .navbar-heading {
   color: $navbar-light-heading-color;
 }

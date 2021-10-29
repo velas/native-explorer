@@ -40,18 +40,19 @@ export function ClusterModal() {
         <div className="modal-dialog modal-dialog-vertical">
           <div className="modal-content">
             <div className="modal-body" onClick={(e) => e.stopPropagation()}>
-              <span className="c-pointer" onClick={onClose}>
-                &times;
-              </span>
-
-              <h2 className="text-center mb-4 mt-4">Choose a Cluster</h2>
+              <div className="d-flex justify-content-between">
+                <h2 className="text-center mb-4 mt-4">CHOOSE A CLUSTER</h2>
+                <span className="c-pointer" onClick={onClose}>
+                  &times;
+                </span>
+              </div>
               <ClusterToggle />
 
               {showDeveloperSettings && (
                 <>
                   <hr />
 
-                  <h2 className="text-center mb-4 mt-4">Developer Settings</h2>
+                  <h2 className="text-left mb-4 mt-5">DEVELOPER SETTINGS</h2>
                   <div className="d-flex justify-content-between">
                     <span className="mr-3">Enable custom url param</span>
                     <div className="custom-control custom-switch d-inline">
@@ -62,10 +63,7 @@ export function ClusterModal() {
                         id="cardToggle"
                         onChange={onToggleCustomUrlFeature}
                       />
-                      <label
-                        className="custom-control-label"
-                        htmlFor="cardToggle"
-                      ></label>
+                      <label className="custom-control-label" htmlFor="cardToggle" />
                     </div>
                   </div>
                   <p className="text-muted font-size-sm mt-3">
@@ -173,8 +171,8 @@ function ClusterToggle() {
           );
 
         const btnClass = active
-          ? `border-${activeSuffix} text-${activeSuffix}`
-          : "btn-white";
+          ? `bg-${activeSuffix}`
+          : "bg-custom";
 
         const clusterLocation = (location: Location) => {
           const params = new URLSearchParams(location.search);
@@ -193,10 +191,10 @@ function ClusterToggle() {
         return (
           <Link
             key={index}
-            className={`btn text-left col-12 mb-3 ${btnClass}`}
+            className={`btn text-left text-white col-12 mb-3 ${btnClass}`}
             to={clusterLocation}
           >
-            {`${clusterName(net)}: `}
+            {`${clusterName(net)}: `}<br/>
             <span className="text-muted d-inline-block">
               {clusterUrl(net, customUrl).replace("explorer-", "")}
             </span>

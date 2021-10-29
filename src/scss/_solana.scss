@@ -22,8 +22,7 @@ ul.log-messages {
   max-height: 20rem;
   overflow: auto;
   font-size: 0.8125rem;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .popover-container {
@@ -203,8 +202,41 @@ h4.slot-pill {
   padding: 4px;
 }
 
+.dark .search-bar__control {
+  background-color: #141C2B !important;
+  border-color: #152E4D !important;
+}
+
 .search-bar__menu {
   border-radius: $border-radius !important;
+}
+.dark .search-bar__menu {
+  background-color: #141C2B;
+  color: #838891;
+  .search-bar__option {
+    &.search-bar__option--is-focused {
+      background-color: #1C273C !important;
+    }
+
+    color: #c4c2c4;
+
+    &:hover {
+      background-color: #1C273C !important;
+    }
+  }
+}
+
+.supply-overview-card {
+  border-bottom: 1px solid #E0E0EF;
+}
+
+.dark .supply-overview-card {
+  border-bottom: 1px solid #293447;
+  color: #bfc2c2;
+}
+
+.dark .search-bar__input {
+  color: #838891;
 }
 
 .token-icon {
@@ -367,8 +399,9 @@ pre.json-wrap {
 }
 
 .staking-card {
+  color: $text-color;
   h1 {
-    font-size: 25px;
+    font-size: 28px;
     margin-bottom: 1rem;
     small {
       font-size: 15px;
@@ -380,13 +413,16 @@ pre.json-wrap {
   }
   h6 {
     text-align: left;
-    font-size: 13px;
+    font-size: 15px;
     text-transform: uppercase;
     margin: 0 0 15px;
   }
   em {
     font-style: normal;
   }
+}
+.dark .staking-card {
+  color: #8392a5;
 }
 
 p.updated-time {

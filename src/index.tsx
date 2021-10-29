@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as Sentry from "@sentry/react";
-import "./scss/theme-dark.scss";
 import App from "./App";
 import { ClusterProvider } from "./providers/cluster";
 import { RichListProvider } from "./providers/richList";
@@ -19,25 +18,48 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+export enum ThemeMode {
+  'light',
+  'dark'
+}
+
+export interface IProps {
+  themeMode: ThemeMode,
+  switchTheme: () => void
+}
+
+export function Index() {
+  const [mode, setMode] = React.useState<ThemeMode>(ThemeMode.light);
+
+  const switchTheme = (): void => {
+    if(mode === ThemeMode.dark) setMode(ThemeMode.light);
+    else if(mode === ThemeMode.light) setMode(ThemeMode.dark);
+  }
+
+  return (
+    <Router>
+      <ClusterProvider>
+        <StatsProvider>
+          <SupplyProvider>
+            <RichListProvider>
+              <AccountsProvider>
+                <BlockProvider>
+                  <MintsProvider>
+                    <TransactionsProvider>
+                      <App themeMode={mode} switchTheme={() => {switchTheme()}}/>
+                    </TransactionsProvider>
+                  </MintsProvider>
+                </BlockProvider>
+              </AccountsProvider>
+            </RichListProvider>
+          </SupplyProvider>
+        </StatsProvider>
+      </ClusterProvider>
+    </Router>
+  )
+}
+
 ReactDOM.render(
-  <Router>
-    <ClusterProvider>
-      <StatsProvider>
-        <SupplyProvider>
-          <RichListProvider>
-            <AccountsProvider>
-              <BlockProvider>
-                <MintsProvider>
-                  <TransactionsProvider>
-                    <App />
-                  </TransactionsProvider>
-                </MintsProvider>
-              </BlockProvider>
-            </AccountsProvider>
-          </RichListProvider>
-        </SupplyProvider>
-      </StatsProvider>
-    </ClusterProvider>
-  </Router>,
+    <Index />,
   document.getElementById("root")
 );

@@ -3,6 +3,11 @@
   padding-left: 0 !important;
   max-width: 200px;
   min-width: 50px;
+  border-right: 1px solid $border-color;
+}
+.dark .sidebar {
+  background-color: #1C273C;
+  border-right: none;
 }
 .sidebar .logo {
   margin-top: 87px;
@@ -28,8 +33,11 @@
   color: #0168FA;
 }
 .sidebar .nav-item span {
-  color: white;
+  color: $sidebar-text-color;
   line-height: 45px;
   font-size: 16px !important;
   font-family: $font-family-new;
+}
+.dark .sidebar .nav-item span {
+  color: $white;
 }

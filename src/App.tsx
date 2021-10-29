@@ -5,30 +5,28 @@ import { ClusterModal } from "components/ClusterModal";
 import { MessageBanner } from "components/MessageBanner";
 import { Navbar } from "components/Navbar";
 import { Sidebar } from "./components/Sidebar";
-import { ClusterStatusBanner } from "components/ClusterStatusButton";
 import { SearchBar } from "components/SearchBar";
-
-
 import { AccountDetailsPage } from "pages/AccountDetailsPage";
 import { TransactionInspectorPage } from "pages/inspector/InspectorPage";
 import { ClusterStatsPage } from "pages/ClusterStatsPage";
 import { SupplyPage } from "pages/SupplyPage";
 import { TransactionDetailsPage } from "pages/TransactionDetailsPage";
 import { BlockDetailsPage } from "pages/BlockDetailsPage";
+import "./scss/theme.scss";
+import {IProps, ThemeMode} from "./index";
 
 const ADDRESS_ALIASES = ["account", "accounts", "addresses"];
 const TX_ALIASES = ["txs", "txn", "txns", "transaction", "transactions"];
 
-function App() {
+function App(props: IProps) {
   return (
-    <div className="container-fluid">
+    <div className={`container-fluid ${props.themeMode === ThemeMode.dark ? "dark" : ""}`}>
       <ClusterModal />
       <div className="row flex-nowrap">
-        <Sidebar />
+        <Sidebar themeMode={props.themeMode} />
         <div className="main-content col py-3">
-          <Navbar />
+          <Navbar themeMode={props.themeMode} switchTheme={() => props.switchTheme()} />
           <MessageBanner />
-          {/*<ClusterStatusBanner />*/}
           <div className="d-lg-none px-0 px-md-2 px-lg-3">
             <SearchBar />
           </div>

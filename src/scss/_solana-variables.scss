@@ -7,6 +7,8 @@
 // Remove the "//" to comment it in and see it in action!
 $body-bg: #f9fdfc !default;
 $sidebar-bg: #fff !default;
+$card-button-bg: #fff !default;
+$card-button-active-bg: #F5F6FA !default;
 // Dashkit scss needs to know where img masks are stored
 $path-to-img: "../../img/dashkit" !default;
 $path-to-fonts: "../../fonts" !default;
@@ -16,7 +18,7 @@ $path-to-fonts: "../../fonts" !default;
 $white: #ffffff !default;
 $gray-100: #f9fdfc;
 $gray-200: #f1f8f6;
-$gray-300: #e5ebe9;
+$gray-300: #e0e0ef;
 $gray-400: #c6e6de;
 $gray-500: #abd5c6;
 $gray-600: #86b8b6;
@@ -57,7 +59,8 @@ $font-family-base: "IBM Plex Sans", sans-serif;
 .display-2 {
   font-family: "IBM Plex Sans", sans-serif;
 }
-
+$sidebar-text-color: $black;
+$text-color: #3f3f44;
 .text-rainbow {
   background: linear-gradient(0.3turn, #e400ff, #00ffbd);
   background-clip: text;

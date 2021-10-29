@@ -8,7 +8,6 @@
 //
 
 .modal-dialog {
-
   // When fading in the modal, animate it to slide down
   .modal.fade & {
     transform: translate(0, -150px);
@@ -17,6 +16,26 @@
   .modal.show & {
     transform: translate(0, 0);
   }
+}
+
+.dark .modal-dialog {
+  color: #E0E0EF !important;
+  .modal-content {
+    background-color: #1C273C !important;
+  }
+  .c-pointer {
+    color: #E0E0EF;
+  }
+}
+
+.modal-dialog .bg-custom {
+  background-color: #f1f1f1;
+  color: #141C2B !important;
+}
+
+.dark .modal-dialog .bg-custom {
+  background-color: #141C2B;
+  color: #E0E0EF !important;
 }
 
 .modal-header .close {
