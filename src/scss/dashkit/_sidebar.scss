@@ -1,0 +1,35 @@
+.sidebar {
+  background-color: $sidebar-bg;
+  padding-left: 0 !important;
+  max-width: 200px;
+  min-width: 50px;
+}
+.sidebar .logo {
+  margin-top: 87px;
+  margin-bottom: 126px;
+}
+.sidebar ul,
+.sidebar li,
+.sidebar .nav-item a {
+  width: 100%;
+}
+.sidebar .nav-item a {
+  display: block;
+  height: 45px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 0 0 0 30px;
+}
+.sidebar .nav-item a.active {
+  background: none;
+  border-left: 3px solid #0168FA;
+}
+.sidebar .nav-item a.active span {
+  color: #0168FA;
+}
+.sidebar .nav-item span {
+  color: white;
+  line-height: 45px;
+  font-size: 16px !important;
+  font-family: $font-family-new;
+}

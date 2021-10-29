@@ -161,6 +161,7 @@ $caret-width: .25em !default;
 // stylelint-disable value-keyword-case
 $font-family-sans-serif: 'Cerebri Sans', sans-serif !default;
 $font-family-base: $font-family-sans-serif !default;
+$font-family-new: "IBM Plex Sans", sans-serif;
 // stylelint-enable value-keyword-case
 
 $font-size-base: 0.9375rem !default; // 15px
@@ -714,7 +715,6 @@ $navbar-light-divider-color: $border-color !default;
 $navbar-light-brand-filter: none;
 
 $navbar-dropdown-toggle-on-hover: true !default;
-
 
 // Progress bars
 

@@ -20,6 +20,13 @@ import { FetchStatus } from "providers/cache";
 import { useVoteAccounts } from "providers/accounts/vote-accounts";
 // @ts-ignore
 import * as CoinGecko from "coingecko-api";
+// icons
+import stakeIcon from  "../img/staking-card/stake-dark.png";
+import supplyIcon from "../img/staking-card/supply-dark.png";
+import priceIcon from "../img/staking-card/price-dark.png";
+import stakeGraph from "../img/staking-card/stake-graph.png";
+import supplyGraph from "../img/staking-card/supply-graph.png";
+import priceGraph from "../img/staking-card/price-graph.png";
 
 enum CoingeckoStatus {
   Success,
@@ -34,19 +41,27 @@ const PRICE_REFRESH = 10000;
 
 export function ClusterStatsPage() {
   return (
-    <div className="container mt-4">
-      <StakingComponent />
-      <div className="card">
-        <div className="card-header">
-          <div className="row align-items-center">
-            <div className="col">
-              <h4 className="card-header-title">Live Cluster Stats</h4>
+    <div className="container-fluid mt-4">
+      <div className="row">
+        <div className="col-12">
+          <StakingComponent />
+        </div>
+        <div className="col-12 col-xl-6">
+          <div className="card">
+            <div className="card-header">
+              <div className="row align-items-center">
+                <div className="col">
+                  <h4 className="card-header-title">Live Cluster Stats</h4>
+                </div>
+              </div>
             </div>
+            <StatsCardBody />
           </div>
         </div>
-        <StatsCardBody />
+        <div className="col-12 col-xl-6">
+          <TpsCard />
+        </div>
       </div>
-      <TpsCard />
     </div>
   );
 }
@@ -128,6 +143,8 @@ function StakingComponent() {
     solanaInfo = coinInfo.coinInfo;
   }
 
+  // @ts-ignore
+  // @ts-ignore
   return (
     // <div className="card staking-card">
     //   <div className="card-body">
@@ -208,87 +225,120 @@ function StakingComponent() {
       <div className="col-12 col-lg-4 col-xl">
         <div className="card">
           <div className="card-body">
-            <h4>Circulating Supply
-            <span className="ml-2 badge badge-primary rank" style={{opacity: 0.0}}>{displayLamports(supply.circulating)}</span>
-            </h4>
-            <h1>
-              <em>{displayLamports(supply.circulating)}</em> /{" "}
-              <small>{displayLamports(supply.total)}</small>
-            </h1>
-            <h5>
-              <em>{circulatingPercentage}%</em> is circulating
-            </h5>
+            <div className="d-flex justify-content-start align-items-center">
+              <div className="mr-4">
+                <img src={supplyIcon} alt="circulating supply"/>
+              </div>
+              <div>
+                <h6>Circulating Supply
+                <span className="ml-2 badge badge-primary rank" style={{opacity: 0.0}}>{displayLamports(supply.circulating)}</span>
+                </h6>
+                <h1>
+                  <em>{displayLamports(supply.circulating)}</em> /{" "}
+                  <small>{displayLamports(supply.total)}</small>
+                </h1>
+                <div className="d-flex justify-content-start align-items-center">
+                  <img src={supplyGraph} alt="circulating supply graph" className="mr-3"/>
+                  <h5>
+                    <em>{circulatingPercentage}%</em> is circulating
+                  </h5>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div className="col-12 col-lg-4 col-xl">
         <div className="card">
           <div className="card-body">
-            <h4>Active Stake{" "}
+            <div className="d-flex justify-content-start align-items-center">
+              <div className="mr-4">
+                <img src={stakeIcon} alt="active state"/>
+              </div>
+              <div>
+                <h6>Active Stake{" "}
                   <span className="ml-2 badge badge-primary rank" style={{opacity: 0.0}}>{displayLamports(stakeHistory.effective)}</span>
-                  </h4>
-            <h1>
-              <em>{displayLamports(stakeHistory.effective)}</em> /{" "}
-              <small>{displayLamports(supply.total)}</small>
-            </h1>
-            {delinquentStakePercentage && (
-              <h5>
-                Delinquent stake: <em>{delinquentStakePercentage}%</em>
-              </h5>
-            )}
+                </h6>
+                <h1>
+                  <em>{displayLamports(stakeHistory.effective)}</em> /{" "}
+                  <small>{displayLamports(supply.total)}</small>
+                </h1>
+                <div className="d-flex justify-content-start align-items-center">
+                  <img src={stakeGraph} alt="active state graph" className="mr-3"/>
+                  {delinquentStakePercentage && (
+                    <h5>
+                      Delinquent stake: <em>{delinquentStakePercentage}%</em>
+                    </h5>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div className="col-12 col-lg-4 col-xl">
         <div className="card">
           <div className="card-body">
-            {solanaInfo && (
-              <>
-                <h4>
-                  Price{" "}
-                  <span className="ml-2 badge badge-primary rank">
-                    Rank #{solanaInfo.market_cap_rank}
-                  </span>
-                </h4>
-                <h1>
-                  <em>${solanaInfo.price.toFixed(2)}</em>{" "}
-                  {solanaInfo.price_change_percentage_24h > 0 && (
-                    <small className="change-positive">
-                      &uarr; {solanaInfo.price_change_percentage_24h.toFixed(2)}
-                      %
-                    </small>
-                  )}
-                  {solanaInfo.price_change_percentage_24h < 0 && (
-                    <small className="change-negative">
-                      &darr; {solanaInfo.price_change_percentage_24h.toFixed(2)}
-                      %
-                    </small>
-                  )}
-                  {solanaInfo.price_change_percentage_24h === 0 && (
-                    <small>0%</small>
-                  )}
-                </h1>
-                <h5>
-                  24h Vol: <em>${abbreviatedNumber(solanaInfo.volume_24)}</em>{" "}
-                  MCap: <em>${abbreviatedNumber(solanaInfo.market_cap)}</em>
-                </h5>
-              </>
-            )}
-            {coinInfo.status === CoingeckoStatus.FetchFailed && (
-              <>
-                <h4>Price</h4>
-                <h1>
-                  <em>$--.--</em>
-                </h1>
-                <h5>Error fetching the latest price information</h5>
-              </>
-            )}
-            {solanaInfo && (
-              <p className="updated-time text-muted">
-                Updated at{" "}
-                {displayTimestampWithoutDate(solanaInfo.last_updated.getTime())}
-              </p>
-            )}
+            <div className="d-flex justify-content-start align-items-center">
+              <div className="mr-4">
+                <img src={priceIcon} alt="price"/>
+              </div>
+              <div>
+                {solanaInfo && (
+                  <>
+                    <h6>
+                      Price{" "}
+                      <span className="ml-2 badge badge-primary rank">
+                        Rank #{solanaInfo.market_cap_rank}
+                      </span>
+                    </h6>
+                    <h1>
+                      <em>${solanaInfo.price.toFixed(2)}</em>{" "}
+                      {solanaInfo.price_change_percentage_24h > 0 && (
+                        <small className="change-positive">
+                          &uarr; {solanaInfo.price_change_percentage_24h.toFixed(2)}
+                          %
+                        </small>
+                      )}
+                      {solanaInfo.price_change_percentage_24h < 0 && (
+                        <small className="change-negative">
+                          &darr; {solanaInfo.price_change_percentage_24h.toFixed(2)}
+                          %
+                        </small>
+                      )}
+                      {solanaInfo.price_change_percentage_24h === 0 && (
+                        <small>0%</small>
+                      )}
+                    </h1>
+                    <div className="d-flex justify-content-start align-items-center">
+                      <img src={priceGraph} alt="price" className="mr-3"/>
+                      <h5>
+                        24h Vol: <em>${abbreviatedNumber(solanaInfo.volume_24)}</em>{" "}
+                        MCap: <em>${abbreviatedNumber(solanaInfo.market_cap)}</em>
+                      </h5>
+                    </div>
+                  </>
+                )}
+                {coinInfo.status === CoingeckoStatus.FetchFailed && (
+                  <>
+                    <h6>Price</h6>
+                    <h1>
+                      <em>$--.--</em>
+                    </h1>
+                    <div className="d-flex justify-content-start align-items-center">
+                      <img src={priceGraph} alt="price" className="mr-3"/>
+                      <h5>Error fetching the latest price information</h5>
+                    </div>
+                  </>
+                )}
+                {solanaInfo && (
+                  <p className="updated-time text-muted">
+                    Updated at{" "}
+                    {displayTimestampWithoutDate(solanaInfo.last_updated.getTime())}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

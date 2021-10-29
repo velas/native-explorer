@@ -9,9 +9,11 @@
 
 .card {
   margin-bottom: $card-margin-bottom;
-  border-color: $card-outline-color;
   box-shadow: $card-box-shadow;
+  background-color: $sidebar-bg;
+  border: none;
 }
+
 
 .card > * {
   flex-shrink: 0;

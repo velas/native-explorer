@@ -162,6 +162,10 @@ h4.slot-pill {
   min-width: 0;
 }
 
+.min-width-1 {
+  min-width: 50px;
+}
+
 .mb-last-0 {
   &:last-child {
     margin-bottom: 0 !important;
@@ -364,17 +368,24 @@ pre.json-wrap {
 
 .staking-card {
   h1 {
-    margin-bottom: 0.75rem;
+    font-size: 25px;
+    margin-bottom: 1rem;
     small {
-      font-size: 1rem;
+      font-size: 15px;
+      color: $primary;
     }
   }
   h5 {
     margin-bottom: 0;
   }
+  h6 {
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: 0 0 15px;
+  }
   em {
     font-style: normal;
-    color: $primary;
   }
 }
 

@@ -6,7 +6,7 @@
 // Example of a variable override to change Dashkit's background color
 // Remove the "//" to comment it in and see it in action!
 $body-bg: #f9fdfc !default;
-
+$sidebar-bg: #fff !default;
 // Dashkit scss needs to know where img masks are stored
 $path-to-img: "../../img/dashkit" !default;
 $path-to-fonts: "../../fonts" !default;
@@ -31,8 +31,8 @@ $rainbow-3: #79abd2;
 $rainbow-4: #38d0bd;
 $rainbow-5: #1dd79b;
 
-$primary: #42ba96 !default;
-$primary-dark: #1dd79b !default;
+$primary: #0168FA !default;
+$primary-dark: #0168FA !default;
 $success: #19be56 !default;
 $secondary: $gray-700;
 $danger: #b45be1;
@@ -53,9 +53,9 @@ $link-color: $primary-dark;
 
 // Global
 
-$font-family-base: "Rubik";
+$font-family-base: "IBM Plex Sans", sans-serif;
 .display-2 {
-  font-family: Saira, Helvetica, sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 .text-rainbow {

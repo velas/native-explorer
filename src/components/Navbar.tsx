@@ -1,67 +1,36 @@
 import React from "react";
-import Logo from "img/logos-solana/dark-explorer-logo.svg";
-import { clusterPath } from "utils/url";
-import { Link, NavLink } from "react-router-dom";
+import Switch from 'react-switch';
 import { ClusterStatusButton } from "components/ClusterStatusButton";
+import {SearchBar} from "./SearchBar";
+
 
 export function Navbar() {
   // TODO: use `collapsing` to animate collapsible navbar
-  const [collapse, setCollapse] = React.useState(false);
-  
+  const [switchStatus, setSwitchStatus] = React.useState<boolean>(false);
+  const handleThemeSwitch = ():void => {
+    setSwitchStatus(!switchStatus);
+  }
+
   return (
-    <nav className="navbar navbar-expand-md navbar-light">
-      <div className="container">
-        <Link to={clusterPath("/")}>
-          <img src={Logo} height="30" alt="Velas Native Explorer" />
-        </Link>
-
-        <button
-          className="navbar-toggler"
-          type="button"
-          onClick={() => setCollapse((value) => !value)}
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div
-          className={`collapse navbar-collapse ml-auto mr-4 ${collapse ? "show" : ""
-            }`}
-        >
-          <ul className="navbar-nav mr-auto tabs">
-            <li className="nav-item">
-              <NavLink className="nav-link" to={clusterPath("/")} exact>
-                Cluster Stats
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to={clusterPath("/supply")}>
-                Supply
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to={clusterPath("/tx/inspector")}>
-                Inspector
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link url-link" href="https://velasvalidators.com" target="_blank" rel="noreferrer">
-              velasvalidators.com
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link url-link" href="https://velasity.com/" target="_blank" rel="noreferrer">
-              velasity.com
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link url-link" href="https://evmexplorer.velas.com/" target="_blank" rel="noreferrer">
-                EVM Explorer
-              </a>
-            </li>
-          </ul>
+    <nav className="navbar navbar-expand-md navbar-light px-0 px-md-2 px-lg-3 py-0">
+      <div className="container-fluid justify-content-end">
+        <div className="mr-5 flex-grow-1 d-none d-lg-block">
+          <SearchBar />
         </div>
-
-        <div className="d-none d-md-block">
+        <div className="mr-5 d-flex">
+          <Switch
+            checked={switchStatus}
+            onChange={handleThemeSwitch}
+            checkedIcon={false}
+            uncheckedIcon={false}
+            onColor="#fff"
+            offColor="#141C2B"
+            onHandleColor="#141C2B"
+            offHandleColor="#fff"
+            className="theme-switch"
+          />
+        </div>
+        <div>
           <ClusterStatusButton />
         </div>
       </div>
