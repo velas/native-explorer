@@ -203,8 +203,8 @@ h4.slot-pill {
 }
 
 .dark .search-bar__control {
-  background-color: #141C2B !important;
-  border-color: #152E4D !important;
+  background-color: $dark-sidebar-bg !important;
+  border-color: $dark-border-color !important;
 }
 
 .search-bar__menu {
@@ -221,7 +221,7 @@ h4.slot-pill {
     color: #c4c2c4;
 
     &:hover {
-      background-color: #1C273C !important;
+      background-color: $dark-sidebar-bg !important;
     }
   }
 }
@@ -231,12 +231,12 @@ h4.slot-pill {
 }
 
 .dark .supply-overview-card {
-  border-bottom: 1px solid #293447;
-  color: #bfc2c2;
+  border-bottom: 1px solid $dark-border-color;
+  color: $dark-text-color;
 }
 
 .dark .search-bar__input {
-  color: #838891;
+  color: $dark-text-color;
 }
 
 .filter-btn button {
@@ -247,21 +247,22 @@ h4.slot-pill {
 
 .dark .filter-btn {
   button{
-    background-color: #283143;
-    color: #bfc2c2;
+    background-color: $dark-button-bg;
+    color: $dark-text-color;
   }
 
   .dropdown-menu {
     background-color: #1C273C;
-    border: 1px solid #141C2B;
+    border: 1px solid $dark-border-color;
   }
 
   .dropdown-menu a.active {
-    color: #bfc2c2;
+    color: $white;
   }
 
   .dropdown-menu a:hover {
-    background-color: #394256;
+    background-color: $dark-sidebar-bg;
+    color: $dark-active-bg;
   }
 }
 
@@ -270,9 +271,9 @@ h4.slot-pill {
 }
 
 .dark .load-account-btn {
-  background-color: #141C2B;
-  color: #bfc2c2;
-  border: 1px solid #1C273C;
+  background-color: $dark-button-bg;
+  color: $dark-text-color;
+  border: 1px solid $dark-border-color;
 }
 
 
@@ -459,7 +460,7 @@ pre.json-wrap {
   }
 }
 .dark .staking-card {
-  color: #8392a5;
+  color: $dark-text-color;
 }
 
 p.updated-time {

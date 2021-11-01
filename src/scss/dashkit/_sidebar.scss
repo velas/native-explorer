@@ -6,7 +6,7 @@
   border-right: 1px solid $border-color;
 }
 .dark .sidebar {
-  background-color: #1C273C;
+  background-color: $dark-sidebar-bg;
   border-right: none;
 }
 .sidebar .logo {
@@ -39,5 +39,5 @@
   font-family: $font-family-new;
 }
 .dark .sidebar .nav-item span {
-  color: $white;
+  color: $dark-sidebar-text-color;
 }

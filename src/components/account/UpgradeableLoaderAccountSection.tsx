@@ -72,9 +72,9 @@ export function UpgradeableProgramSection({
   const { cluster } = useCluster();
   const label = addressLabel(account.pubkey.toBase58(), cluster);
   return (
-    <div className="card">
-      <div className="card-header">
-        <h3 className="card-header-title mb-0 d-flex align-items-center">
+    <>
+      <div className="d-flex justify-content-between">
+        <h3 className="mt-3 card-title">
           Program Account
         </h3>
         <button
@@ -85,58 +85,60 @@ export function UpgradeableProgramSection({
           Refresh
         </button>
       </div>
+      <div className="card">
 
-      <TableCardBody>
-        <tr>
-          <td>Address</td>
-          <td className="text-lg-right">
-            <Address pubkey={account.pubkey} alignRight raw />
-          </td>
-        </tr>
-        {label && (
+        <TableCardBody>
           <tr>
-            <td>Address Label</td>
-            <td className="text-lg-right">{label}</td>
-          </tr>
-        )}
-        <tr>
-          <td>Balance (VLX)</td>
-          <td className="text-lg-right text-uppercase">
-            <SolBalance lamports={account.lamports || 0} />
-          </td>
-        </tr>
-        <tr>
-          <td>Executable</td>
-          <td className="text-lg-right">Yes</td>
-        </tr>
-        <tr>
-          <td>Executable Data</td>
-          <td className="text-lg-right">
-            <Address pubkey={programAccount.programData} alignRight link />
-          </td>
-        </tr>
-        <tr>
-          <td>Upgradeable</td>
-          <td className="text-lg-right">
-            {programData.authority !== null ? "Yes" : "No"}
-          </td>
-        </tr>
-        <tr>
-          <td>Last Deployed Slot</td>
-          <td className="text-lg-right">
-            <Slot slot={programData.slot} link />
-          </td>
-        </tr>
-        {programData.authority !== null && (
-          <tr>
-            <td>Upgrade Authority</td>
+            <td>Address</td>
             <td className="text-lg-right">
-              <Address pubkey={programData.authority} alignRight link />
+              <Address pubkey={account.pubkey} alignRight raw />
             </td>
           </tr>
-        )}
-      </TableCardBody>
-    </div>
+          {label && (
+            <tr>
+              <td>Address Label</td>
+              <td className="text-lg-right">{label}</td>
+            </tr>
+          )}
+          <tr>
+            <td>Balance (VLX)</td>
+            <td className="text-lg-right text-uppercase">
+              <SolBalance lamports={account.lamports || 0} />
+            </td>
+          </tr>
+          <tr>
+            <td>Executable</td>
+            <td className="text-lg-right">Yes</td>
+          </tr>
+          <tr>
+            <td>Executable Data</td>
+            <td className="text-lg-right">
+              <Address pubkey={programAccount.programData} alignRight link />
+            </td>
+          </tr>
+          <tr>
+            <td>Upgradeable</td>
+            <td className="text-lg-right">
+              {programData.authority !== null ? "Yes" : "No"}
+            </td>
+          </tr>
+          <tr>
+            <td>Last Deployed Slot</td>
+            <td className="text-lg-right">
+              <Slot slot={programData.slot} link />
+            </td>
+          </tr>
+          {programData.authority !== null && (
+            <tr>
+              <td>Upgrade Authority</td>
+              <td className="text-lg-right">
+                <Address pubkey={programData.authority} alignRight link />
+              </td>
+            </tr>
+          )}
+        </TableCardBody>
+      </div>
+    </>
   );
 }
 

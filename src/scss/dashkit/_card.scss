@@ -8,7 +8,7 @@
 //
 
 .dark .card {
-  background-color: #1C273CFF;
+  background-color: $dark-sidebar-bg;
 }
 
 .card {
@@ -19,7 +19,7 @@
   border: 1px solid $card-border-color;
 }
 .dark .card {
-  border: 1px solid #293447;
+  border: 1px solid $dark-border-color;
 }
 
 .card #perf-history {
@@ -46,8 +46,8 @@
   background-color: $card-button-active-bg !important;
 }
 .dark .card button {
-  background-color: #283143 !important;
-  color: #87A3B9;
+  background-color: $dark-button-bg !important;
+  color: $dark-text-color;
 }
 .dark .card button.active {
   background-color: #3B4863 !important;
@@ -143,7 +143,7 @@
 
 .dark .card-table thead th,
 .dark .card-table tbody td {
-  color: #87A3B9 !important;
+  color: $dark-text-color !important;
 }
 
 .card-table tbody tr{

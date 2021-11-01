@@ -59,8 +59,21 @@ $font-family-base: "IBM Plex Sans", sans-serif;
 .display-2 {
   font-family: "IBM Plex Sans", sans-serif;
 }
+
+// Custom
 $sidebar-text-color: $black;
 $text-color: #3f3f44;
+
+$dark-sidebar-bg: #1C273C;
+$dark-sidebar-text-color: $white;
+$dark-text-color: #d0d5da;
+$dark-border-color: #50596b;
+$dark-button-bg: #283143;
+$dark-active-bg: #bfc2c2;
+$dark-header-color: $white;
+
+
+
 .text-rainbow {
   background: linear-gradient(0.3turn, #e400ff, #00ffbd);
   background-clip: text;
@@ -102,4 +115,7 @@ $text-color: #3f3f44;
 }
 .text-rainbow-5 {
   color: #1dd79b;
+}
+.dark .header-title {
+  color: $dark-header-color;
 }

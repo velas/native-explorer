@@ -101,51 +101,53 @@ function OverviewCard({
 }) {
   const refresh = useFetchAccountInfo();
   return (
-    <div className="card">
-      <div className="card-header">
-        <h3 className="card-header-title mb-0 d-flex align-items-center">
-          Stake Account
+    <>
+      <div className="d-flex justify-content-between">
+        <h3 className="mt-3 card-title">
+          STAKE ACCOUNT
         </h3>
         <button
           className="btn btn-white btn-sm"
           onClick={() => refresh(account.pubkey)}
         >
-          <span className="fe fe-refresh-cw mr-2"></span>
+          <span className="fe fe-refresh-cw mr-2"/>
           Refresh
         </button>
       </div>
+      <div className="card">
 
-      <TableCardBody>
-        <tr>
-          <td>Address</td>
-          <td className="text-lg-right">
-            <Address pubkey={account.pubkey} alignRight raw />
-          </td>
-        </tr>
-        <tr>
-          <td>Balance (VLX)</td>
-          <td className="text-lg-right text-uppercase">
-            <SolBalance lamports={account.lamports || 0} />
-          </td>
-        </tr>
-        <tr>
-          <td>Rent Reserve (VLX)</td>
-          <td className="text-lg-right">
-            <SolBalance lamports={stakeAccount.meta.rentExemptReserve} />
-          </td>
-        </tr>
-        {hideDelegation && (
+        <TableCardBody>
           <tr>
-            <td>Status</td>
+            <td>Address</td>
             <td className="text-lg-right">
-              {isFullyInactivated(stakeAccount, activation)
-                ? "Not delegated"
-                : displayStatus(stakeAccountType, activation)}
+              <Address pubkey={account.pubkey} alignRight raw />
             </td>
           </tr>
-        )}
-      </TableCardBody>
-    </div>
+          <tr>
+            <td>Balance (VLX)</td>
+            <td className="text-lg-right text-uppercase">
+              <SolBalance lamports={account.lamports || 0} />
+            </td>
+          </tr>
+          <tr>
+            <td>Rent Reserve (VLX)</td>
+            <td className="text-lg-right">
+              <SolBalance lamports={stakeAccount.meta.rentExemptReserve} />
+            </td>
+          </tr>
+          {hideDelegation && (
+            <tr>
+              <td>Status</td>
+              <td className="text-lg-right">
+                {isFullyInactivated(stakeAccount, activation)
+                  ? "Not delegated"
+                  : displayStatus(stakeAccountType, activation)}
+              </td>
+            </tr>
+          )}
+        </TableCardBody>
+      </div>
+    </>
   );
 }
 
