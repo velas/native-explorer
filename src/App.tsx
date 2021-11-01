@@ -89,7 +89,7 @@ function App(props: IProps) {
                 )}
               />
               <Route exact path="/">
-                <ClusterStatsPage />
+                <ClusterStatsPage themeMode={props.themeMode}/>
               </Route>
               <Route
                 render={({ location }) => (

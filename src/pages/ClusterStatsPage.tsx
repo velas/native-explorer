@@ -1,32 +1,36 @@
 import React from "react";
-import { TableCardBody } from "components/common/TableCardBody";
-import { Slot } from "components/common/Slot";
+import {TableCardBody} from "components/common/TableCardBody";
+import {Slot} from "components/common/Slot";
 import {
   ClusterStatsStatus,
   useDashboardInfo,
   usePerformanceInfo,
   useStatsProvider,
 } from "providers/stats/solanaClusterStats";
-import { lamportsToSol, slotsToHumanString } from "utils";
-import { ClusterStatus, useCluster } from "providers/cluster";
-import { TpsCard } from "components/TpsCard";
-import { displayTimestampWithoutDate, displayTimestampUtc } from "utils/date";
-import { Status, useFetchSupply, useSupply } from "providers/supply";
-import { PublicKey } from "@velas/web3";
-import { ErrorCard } from "components/common/ErrorCard";
-import { LoadingCard } from "components/common/LoadingCard";
-import { useAccountInfo, useFetchAccountInfo } from "providers/accounts";
-import { FetchStatus } from "providers/cache";
-import { useVoteAccounts } from "providers/accounts/vote-accounts";
+import {lamportsToSol, slotsToHumanString} from "utils";
+import {ClusterStatus, useCluster} from "providers/cluster";
+import {TpsCard} from "components/TpsCard";
+import {displayTimestampUtc, displayTimestampWithoutDate} from "utils/date";
+import {Status, useFetchSupply, useSupply} from "providers/supply";
+import {PublicKey} from "@velas/web3";
+import {ErrorCard} from "components/common/ErrorCard";
+import {LoadingCard} from "components/common/LoadingCard";
+import {useAccountInfo, useFetchAccountInfo} from "providers/accounts";
+import {FetchStatus} from "providers/cache";
+import {useVoteAccounts} from "providers/accounts/vote-accounts";
 // @ts-ignore
 import * as CoinGecko from "coingecko-api";
 // icons
-import stakeIcon from  "../img/staking-card/stake-dark.png";
-import supplyIcon from "../img/staking-card/supply-dark.png";
-import priceIcon from "../img/staking-card/price-dark.png";
+import supplyIconLight from "../img/staking-card/supply-light.png";
+import supplyIconDark from "../img/staking-card/supply-dark.png";
+import stakeIconLight from "../img/staking-card/stake-light.png";
+import stakeIconDark from "../img/staking-card/stake-dark.png";
+import priceIconLight from "../img/staking-card/price-light.png";
+import priceIconDark from "../img/staking-card/price-dark.png";
 import stakeGraph from "../img/staking-card/stake-graph.png";
 import supplyGraph from "../img/staking-card/supply-graph.png";
 import priceGraph from "../img/staking-card/price-graph.png";
+import {ThemeMode} from "../index";
 
 enum CoingeckoStatus {
   Success,
@@ -39,13 +43,14 @@ const CLUSTER_STATS_TIMEOUT = 5000;
 const STAKE_HISTORY_ACCOUNT = "SysvarStakeHistory1111111111111111111111111";
 const PRICE_REFRESH = 10000;
 
-export function ClusterStatsPage() {
+export function ClusterStatsPage(props: {themeMode: ThemeMode}) {
+  const {themeMode} = props;
   return (
     <div className="container-fluid mt-4">
       <div className="row">
         <div className="col-12">
           <h3 className="mt-3 card-title">CURRENT STATUS</h3>
-          <StakingComponent />
+          <StakingComponent themeMode={themeMode}/>
         </div>
         <div className="col-12 col-xl-7">
           <h3 className="mt-3 card-title">LIVE CLUSTER STATS</h3>
@@ -61,7 +66,8 @@ export function ClusterStatsPage() {
   );
 }
 
-function StakingComponent() {
+function StakingComponent(props: {themeMode: ThemeMode}) {
+  const { themeMode } = props;
   const { status } = useCluster();
   const supply = useSupply();
   const fetchSupply = useFetchSupply();
@@ -222,7 +228,7 @@ function StakingComponent() {
           <div className="card-body">
             <div className="d-flex justify-content-start align-items-center">
               <div className="mr-4">
-                <img src={supplyIcon} alt="circulating supply"/>
+                <img src={themeMode === ThemeMode.light ? supplyIconLight : supplyIconDark} alt="circulating supply"/>
               </div>
               <div>
                 <h6>Circulating Supply
@@ -248,7 +254,7 @@ function StakingComponent() {
           <div className="card-body">
             <div className="d-flex justify-content-start align-items-center">
               <div className="mr-4">
-                <img src={stakeIcon} alt="active state"/>
+                <img src={ themeMode === ThemeMode.light ? stakeIconLight : stakeIconDark } alt="active state"/>
               </div>
               <div>
                 <h6>Active Stake{" "}
@@ -276,7 +282,7 @@ function StakingComponent() {
           <div className="card-body">
             <div className="d-flex justify-content-start align-items-center">
               <div className="mr-4">
-                <img src={priceIcon} alt="price"/>
+                <img src={ themeMode === ThemeMode.light ? priceIconLight : priceIconDark } alt="price"/>
               </div>
               <div>
                 {solanaInfo && (
