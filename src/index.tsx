@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as Sentry from "@sentry/react";
@@ -32,8 +32,8 @@ export function Index() {
   const [mode, setMode] = React.useState<ThemeMode>(ThemeMode.light);
 
   const switchTheme = (): void => {
-    if(mode === ThemeMode.dark) setMode(ThemeMode.light);
-    else if(mode === ThemeMode.light) setMode(ThemeMode.dark);
+    if (mode === ThemeMode.dark) setMode(ThemeMode.light);
+    else if (mode === ThemeMode.light) setMode(ThemeMode.dark);
   }
 
   return (
@@ -46,7 +46,7 @@ export function Index() {
                 <BlockProvider>
                   <MintsProvider>
                     <TransactionsProvider>
-                      <App themeMode={mode} switchTheme={() => {switchTheme()}}/>
+                      <App themeMode={mode} switchTheme={() => { switchTheme() }} />
                     </TransactionsProvider>
                   </MintsProvider>
                 </BlockProvider>
@@ -60,6 +60,6 @@ export function Index() {
 }
 
 ReactDOM.render(
-    <Index />,
+  <Index />,
   document.getElementById("root")
 );

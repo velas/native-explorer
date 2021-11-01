@@ -3,7 +3,7 @@ import { useSupply, useFetchSupply, Status } from "providers/supply";
 import { LoadingCard } from "./common/LoadingCard";
 import { ErrorCard } from "./common/ErrorCard";
 import { SolBalance } from "utils";
-import { TableCardBody } from "./common/TableCardBody";
+// import { TableCardBody } from "./common/TableCardBody";
 
 export function SupplyCard() {
   const supply = useSupply();
