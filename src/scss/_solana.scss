@@ -22,8 +22,7 @@ ul.log-messages {
   max-height: 20rem;
   overflow: auto;
   font-size: 0.8125rem;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .popover-container {
@@ -162,6 +161,10 @@ h4.slot-pill {
   min-width: 0;
 }
 
+.min-width-1 {
+  min-width: 50px;
+}
+
 .mb-last-0 {
   &:last-child {
     margin-bottom: 0 !important;
@@ -199,9 +202,80 @@ h4.slot-pill {
   padding: 4px;
 }
 
+.dark .search-bar__control {
+  background-color: $dark-sidebar-bg !important;
+  border-color: $dark-border-color !important;
+}
+
 .search-bar__menu {
   border-radius: $border-radius !important;
 }
+.dark .search-bar__menu {
+  background-color: #141C2B;
+  color: #838891;
+  .search-bar__option {
+    &.search-bar__option--is-focused {
+      background-color: #1C273C !important;
+    }
+
+    color: #c4c2c4;
+
+    &:hover {
+      background-color: $dark-sidebar-bg !important;
+    }
+  }
+}
+
+.supply-overview-card {
+  border-bottom: 1px solid #E0E0EF;
+}
+
+.dark .supply-overview-card {
+  border-bottom: 1px solid $dark-border-color;
+  color: $dark-text-color;
+}
+
+.dark .search-bar__input {
+  color: $dark-text-color;
+}
+
+.filter-btn button {
+  border-radius: 10px;
+  padding: 3px 12px;
+  border: none;
+}
+
+.dark .filter-btn {
+  button{
+    background-color: $dark-button-bg;
+    color: $dark-text-color;
+  }
+
+  .dropdown-menu {
+    background-color: #1C273C;
+    border: 1px solid $dark-border-color;
+  }
+
+  .dropdown-menu a.active {
+    color: $white;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: $dark-sidebar-bg;
+    color: $dark-active-bg;
+  }
+}
+
+.load-account-btn {
+  border-radius: 10px;
+}
+
+.dark .load-account-btn {
+  background-color: $dark-button-bg;
+  color: $dark-text-color;
+  border: 1px solid $dark-border-color;
+}
+
 
 .token-icon {
   width: 24px;
@@ -363,19 +437,30 @@ pre.json-wrap {
 }
 
 .staking-card {
+  color: $text-color;
   h1 {
-    margin-bottom: 0.75rem;
+    font-size: 28px;
+    margin-bottom: 1rem;
     small {
-      font-size: 1rem;
+      font-size: 15px;
+      color: $primary;
     }
   }
   h5 {
     margin-bottom: 0;
   }
+  h6 {
+    text-align: left;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin: 0 0 15px;
+  }
   em {
     font-style: normal;
-    color: $primary;
   }
+}
+.dark .staking-card {
+  color: $dark-text-color;
 }
 
 p.updated-time {

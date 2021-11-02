@@ -30,7 +30,7 @@ ul.log-messages {
 }
 
 .search-bar__control {
-  background-color: $gray-800-dark !important;
+  background-color: $body-bg;
   border-color: $card-outline-color !important;
   box-shadow: $card-box-shadow !important;
   min-height: 52px !important;
@@ -39,9 +39,12 @@ ul.log-messages {
     color: $white !important;
   }
 }
+.dark .search-bar__control {
+  background-color: #141C2B !important;
+}
 
 .search-bar__menu {
-  background-color: $gray-800-dark !important;
+  background-color: $body-bg !important;
   border: 1px solid $card-outline-color !important;
   box-shadow: $card-box-shadow !important;
 

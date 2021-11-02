@@ -1,5 +1,5 @@
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import CountUp from "react-countup";
 import {
   usePerformanceInfo,
@@ -14,12 +14,12 @@ import { StatsNotReady } from "pages/ClusterStatsPage";
 
 export function TpsCard() {
   return (
-    <div className="card">
-      <div className="card-header">
-        <h4 className="card-header-title">Live Transaction Stats</h4>
+    <>
+      <h3 className="mt-3 card-title">LIVE TRANSACTION STATS</h3>
+      <div className="card">
+        <TpsCardBody />
       </div>
-      <TpsCardBody />
-    </div>
+    </>
   );
 }
 
@@ -117,10 +117,11 @@ const CHART_OPTIONS = (historyMaxTps: number): ChartOptions => {
       yAxes: [
         {
           ticks: {
-            stepSize: 100,
+            stepSize: 50,
             fontSize: 10,
-            fontColor: "#EEE",
-            beginAtZero: true,
+            fontColor: "#999",
+            fontFamily: "'IBM Plex Sans', sans-serif",
+            beginAtZero: false,
             display: true,
             suggestedMax: historyMaxTps,
           },
@@ -159,9 +160,10 @@ function TpsBarChart({ performanceInfo }: TpsBarChartProps) {
     }),
     datasets: [
       {
-        backgroundColor: "#00D192",
-        hoverBackgroundColor: "#00D192",
-        borderWidth: 0,
+        borderColor: "#1FCE97",
+        backgroundColor: "#61B9A455",
+        hoverBackgroundColor: "#61B9A455",
+        borderWidth: 1,
         data: seriesData.map((val) => val || 0),
       },
     ],
@@ -183,20 +185,16 @@ function TpsBarChart({ performanceInfo }: TpsBarChartProps) {
           <td className="text-lg-right text-monospace">50k+ </td>
         </tr>
       </TableCardBody>
-
-      <hr className="my-0" />
-
       <div className="card-body py-3">
         <div className="align-box-row align-items-start justify-content-between">
-          <div className="d-flex justify-content-between w-100">
-            <span className="mb-0 font-size-sm">TPS history</span>
-
-            <div className="font-size-sm">
+          <div className="d-flex justify-content-between w-100 mb-5">
+            <span className="mb-0 font-size-md">TPS history</span>
+            <div className="btn-group" role="group" aria-label="Basic example">
               {SERIES.map((key) => (
                 <button
                   key={key}
                   onClick={() => setSeries(key)}
-                  className={classNames("btn btn-sm btn-white ml-2", {
+                  className={classNames("btn btn-sm btn-white ", {
                     active: series === key,
                   })}
                 >
@@ -204,14 +202,16 @@ function TpsBarChart({ performanceInfo }: TpsBarChartProps) {
                 </button>
               ))}
             </div>
+            {/*<div className="font-size-sm">*/}
+            {/*</div>*/}
           </div>
 
           <div
             id="perf-history"
-            className="mt-3 d-flex justify-content-end flex-row w-100"
+            className="mt-3 d-flex justify-content-end flex-row w-100 align-items-end"
           >
             <div className="w-100">
-              <Bar data={chartData} options={chartOptions} height={80} />
+              <Line data={chartData} options={chartOptions} height={100} />
             </div>
           </div>
         </div>

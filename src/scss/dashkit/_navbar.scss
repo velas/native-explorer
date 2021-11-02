@@ -12,6 +12,9 @@
   border-width: 0 0 $border-width 0;
   border-style: solid;
 }
+.navbar span.btn {
+  border-radius: 5px;
+}
 a.nav-link.url-link {
   color: #8a8dba !important;
 }
@@ -143,6 +146,10 @@ a.nav-link.url-link:hover {
   border-color: $white;
 }
 
+.navbar .theme-switch {
+  border: 1px solid $navbar-dark-bg;
+}
+
 .navbar-dark.navbar-vibrant.navbar-expand {
 
   @each $breakpoint, $value in $grid-breakpoints {
@@ -179,8 +186,12 @@ a.nav-link.url-link:hover {
 // Navbar light
 
 .navbar-light {
-  background-color: $navbar-light-bg;
+  background-color: transparent;
   border-color: $navbar-light-border-color;
+}
+
+.dark .navbar-light {
+  border-color: #152E4DFF;
 }
 
 .navbar-light .navbar-heading {
@@ -490,7 +501,7 @@ a.nav-link.url-link:hover {
     &:after {
       display: block;
       content: '\e92e';
-      font-family: 'Feather';
+      font-family: $font-family-new;
       margin-left: auto;
       transition: transform .2s;
     }

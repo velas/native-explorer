@@ -42,7 +42,7 @@ function Button() {
     case ClusterStatus.Connected:
       return (
         <span className={btnClasses("primary")}>
-          <span className="fe fe-check-circle mr-2"></span>
+          <span className="fe fe-check-circle mr-2"/>
           {statusName}
         </span>
       );
@@ -54,7 +54,7 @@ function Button() {
             className={spinnerClasses}
             role="status"
             aria-hidden="true"
-          ></span>
+          />
           {statusName}
         </span>
       );
@@ -62,7 +62,7 @@ function Button() {
     case ClusterStatus.Failure:
       return (
         <span className={btnClasses("danger")}>
-          <span className="fe fe-alert-circle mr-2"></span>
+          <span className="fe fe-alert-circle mr-2"/>
           {statusName}
         </span>
       );

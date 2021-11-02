@@ -66,27 +66,19 @@ export function TopAccountsCard() {
         <div className="dropdown-exit" onClick={() => setDropdown(false)} />
       )}
 
+      <div className="d-flex justify-content-between">
+        <h3 className="card-title pt-3">LARGEST ACCOUNTS</h3>
+        <FilterDropdown
+          filter={filter}
+          toggle={() => setDropdown((show) => !show)}
+          show={showDropdown}
+        />
+      </div>
       <div className="card">
-        <div className="card-header">
-          <div className="row align-items-center">
-            <div className="col">
-              <h4 className="card-header-title">Largest Accounts</h4>
-            </div>
-
-            <div className="col-auto">
-              <FilterDropdown
-                filter={filter}
-                toggle={() => setDropdown((show) => !show)}
-                show={showDropdown}
-              />
-            </div>
-          </div>
-        </div>
-
         {richList === Status.Idle && (
           <div className="card-body">
             <span
-              className="btn btn-white ml-3 d-none d-md-inline"
+              className="btn btn-white ml-3 d-none d-md-inline load-account-btn"
               onClick={fetchRichList}
             >
               Load Largest Accounts
@@ -128,7 +120,7 @@ const renderAccountRow = (
   return (
     <tr key={index}>
       <td>
-        <span className="badge badge-soft-light badge-pill">{index + 1}</span>
+        <span>{index + 1}</span>
       </td>
       <td>
         <Address pubkey={account.address} link />
@@ -195,7 +187,7 @@ const FilterDropdown = ({ filter, toggle, show }: DropdownProps) => {
 
   const FILTERS: Filter[] = ["all", null, "nonCirculating"];
   return (
-    <div className="dropdown">
+    <div className="dropdown filter-btn">
       <button
         className="btn btn-white btn-sm dropdown-toggle"
         type="button"

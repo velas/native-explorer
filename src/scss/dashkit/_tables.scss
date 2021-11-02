@@ -10,18 +10,24 @@
 .table {
 
   thead th {
-    background-color: $table-head-bg;
     text-transform: uppercase;
-    font-size: $font-size-sm;
+    font-size: 13px;
     font-weight: $font-weight-bold;
     letter-spacing: .08em;
-    color: $table-head-color;
+    color: #3F3F6E !important;
     border-bottom-width: $table-border-width;
   }
 
   thead th, tbody th, tbody td {
     vertical-align: middle;
+    border-color: $border-color;
   }
+}
+
+.dark .table td,
+.dark .table th {
+  border-color: $dark-border-color !important;
+  //color: ;
 }
 
 .table-sm {

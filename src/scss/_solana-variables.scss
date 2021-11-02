@@ -6,7 +6,9 @@
 // Example of a variable override to change Dashkit's background color
 // Remove the "//" to comment it in and see it in action!
 $body-bg: #f9fdfc !default;
-
+$sidebar-bg: #fff !default;
+$card-button-bg: #fff !default;
+$card-button-active-bg: #F5F6FA !default;
 // Dashkit scss needs to know where img masks are stored
 $path-to-img: "../../img/dashkit" !default;
 $path-to-fonts: "../../fonts" !default;
@@ -16,7 +18,7 @@ $path-to-fonts: "../../fonts" !default;
 $white: #ffffff !default;
 $gray-100: #f9fdfc;
 $gray-200: #f1f8f6;
-$gray-300: #e5ebe9;
+$gray-300: #e0e0ef;
 $gray-400: #c6e6de;
 $gray-500: #abd5c6;
 $gray-600: #86b8b6;
@@ -31,8 +33,8 @@ $rainbow-3: #79abd2;
 $rainbow-4: #38d0bd;
 $rainbow-5: #1dd79b;
 
-$primary: #42ba96 !default;
-$primary-dark: #1dd79b !default;
+$primary: #0168FA !default;
+$primary-dark: #0168FA !default;
 $success: #19be56 !default;
 $secondary: $gray-700;
 $danger: #b45be1;
@@ -53,10 +55,24 @@ $link-color: $primary-dark;
 
 // Global
 
-$font-family-base: "Rubik";
+$font-family-base: "IBM Plex Sans", sans-serif;
 .display-2 {
-  font-family: Saira, Helvetica, sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
 }
+
+// Custom
+$sidebar-text-color: $black;
+$text-color: #3f3f44;
+
+$dark-sidebar-bg: #1C273C;
+$dark-sidebar-text-color: $white;
+$dark-text-color: #d0d5da;
+$dark-border-color: #50596b;
+$dark-button-bg: #283143;
+$dark-active-bg: #bfc2c2;
+$dark-header-color: $white;
+
+
 
 .text-rainbow {
   background: linear-gradient(0.3turn, #e400ff, #00ffbd);
@@ -99,4 +115,7 @@ $font-family-base: "Rubik";
 }
 .text-rainbow-5 {
   color: #1dd79b;
+}
+.dark .header-title {
+  color: $dark-header-color;
 }

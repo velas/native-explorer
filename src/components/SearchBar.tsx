@@ -39,7 +39,7 @@ export function SearchBar() {
 
   const resetValue = "" as any;
   return (
-    <div className="container my-4">
+    <div className="my-4 w-100">
       <div className="row align-items-center">
         <div className="col">
           <Select

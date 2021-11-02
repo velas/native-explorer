@@ -3,7 +3,7 @@ import { useSupply, useFetchSupply, Status } from "providers/supply";
 import { LoadingCard } from "./common/LoadingCard";
 import { ErrorCard } from "./common/ErrorCard";
 import { SolBalance } from "utils";
-import { TableCardBody } from "./common/TableCardBody";
+// import { TableCardBody } from "./common/TableCardBody";
 
 export function SupplyCard() {
   const supply = useSupply();
@@ -26,49 +26,31 @@ export function SupplyCard() {
   }
 
   return (
-    <div className="card">
-      {renderHeader()}
-
-      <TableCardBody>
-        <tr>
-          <td className="w-100">Total Supply (VLX)</td>
-          <td className="text-lg-right">
+    <>
+      <div>
+        <h3 className="pt-3 card-title">SUPPLY OVERVIEW</h3>
+      </div>
+      <div className="card">
+        <div className="supply-overview-card">
+          <h4 className="mt-4 ml-4">Total Supply (VLX)</h4>
+          <h4 className="text-right mr-4 my-4">
             <SolBalance lamports={supply.total} maximumFractionDigits={0} />
-          </td>
-        </tr>
+          </h4>
+        </div>
+        <div className="supply-overview-card">
+          <h4 className="mt-4 ml-4">Circulating Supply (VLX)</h4>
+          <h4 className="text-right mr-4 my-4">
+            <SolBalance lamports={supply.circulating} maximumFractionDigits={0} />
+          </h4>
+        </div>
+        <div className="supply-overview-card">
+          <h4 className="mt-4 ml-4">Non-Circulating Supply (VLX)</h4>
+          <h4 className="text-right mr-4 my-4">
+            <SolBalance lamports={supply.nonCirculating} maximumFractionDigits={0} />
 
-        <tr>
-          <td className="w-100">Circulating Supply (VLX)</td>
-          <td className="text-lg-right">
-            <SolBalance
-              lamports={supply.circulating}
-              maximumFractionDigits={0}
-            />
-          </td>
-        </tr>
-
-        <tr>
-          <td className="w-100">Non-Circulating Supply (VLX)</td>
-          <td className="text-lg-right">
-            <SolBalance
-              lamports={supply.nonCirculating}
-              maximumFractionDigits={0}
-            />
-          </td>
-        </tr>
-      </TableCardBody>
-    </div>
-  );
-}
-
-const renderHeader = () => {
-  return (
-    <div className="card-header">
-      <div className="row align-items-center">
-        <div className="col">
-          <h4 className="card-header-title">Supply Overview</h4>
+          </h4>
         </div>
       </div>
-    </div>
+    </>
   );
-};
+}
