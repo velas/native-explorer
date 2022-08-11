@@ -370,6 +370,10 @@ function StatsCardBody() {
           </td>
         </tr>
       )}
+       <tr>
+        <td className="w-100">Native accounts</td>
+        <td className="text-lg-right text-monospace">750k+</td>
+      </tr>
       <tr>
         <td className="w-100">Slot time (1min average)</td>
         <td className="text-lg-right text-monospace">{averageSlotTime}ms</td>
