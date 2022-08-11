@@ -1,34 +1,28 @@
 name: Build-Deploy
+
 on:
   push:
     branches: [master]
 
+env: 
+  APP_NAME: velas-solana-explorer
+  APP_REPO: velas-solana-explorer
+ 
 jobs:
   docker-build:
-    name: Build
-    runs-on: build
+    name: Build and push
+    runs-on: mainnet-services
     outputs:
       repository: ${{ steps.build.outputs.repository }}
       image_tag: ${{ steps.build.outputs.image_tag }}
     steps:
       - uses: actions/checkout@v2
-      - name: Configure AWS credentials
-        id: checkout
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-      - name: Build, tag, and push image to AWS ECR
+      - name: Build, tag, and push image 
         id: build
         env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: velas-solana-explorer
+          REGISTRY: ${{ secrets.REGISTRY_HOST }}/velas
+          REPOSITORY: ${{ env.APP_REPO }}
           IMAGE_TAG: ${{github.sha}}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --no-cache .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --no-cache  .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
