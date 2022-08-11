@@ -179,7 +179,7 @@ function TpsBarChart({ performanceInfo }: TpsBarChartProps) {
           <td className="text-lg-right text-monospace">{averageTps} </td>
         </tr>
         <tr>
-          <td className="w-100">TPS Max</td>
+          <td className="w-100">TPS max</td>
           <td className="text-lg-right text-monospace">50k+ </td>
         </tr>
       </TableCardBody>
