@@ -8,13 +8,13 @@ import { localStorageIsAvailable } from "utils";
 export function clusterApiUrl(cluster: string): string {
   switch (cluster) {
     case "mainnet-beta":
-      return "https://mainnet.velas.com/rpc";
+      return "https://api.mainnet.velas.com";
     case "testnet":
-      return "https://testnet.velas.com/rpc";
+      return "https://api.testnet.velas.com";
     case "devnet":
-      return "https://devnet.velas.com/rpc";
+      return "https://api.devnet.velas.com";
     default:
-      return "https://mainnet.velas.com/rpc";
+      return "https://api.mainnet.velas.com";
   }
 }
 
