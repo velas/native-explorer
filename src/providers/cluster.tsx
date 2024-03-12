@@ -5,28 +5,16 @@ import { useHistory, useLocation } from "react-router-dom";
 import { reportError } from "utils/sentry";
 import { localStorageIsAvailable } from "utils";
 
-// export function clusterApiUrl(cluster: string): string {
-//   switch (cluster) {
-//     case "mainnet-beta":
-//       return "https://api.mainnet.velas.com";
-//     case "testnet":
-//       return "https://api.testnet.velas.com";
-//     case "devnet":
-//       return "https://api.devnet.velas.com";
-//     default:
-//       return "https://api.mainnet.velas.com";
-//   }
-// }
 export function clusterApiUrl(cluster: string): string {
   switch (cluster) {
     case "mainnet-beta":
-      return "https://mainnet.velas.com/rpc";
+      return "https://api.velas.com";
     case "testnet":
-      return "https://testnet.velas.com/rpc";
+      return "https://api.testnet.velas.com";
     case "devnet":
-      return "https://devnet.velas.com/rpc";
+      return "https://api.devnet.velas.com";
     default:
-      return "https://mainnet.velas.com/rpc";
+      return "https://api.velas.com";
   }
 }
 
@@ -83,11 +71,11 @@ export const DEVNET_URL = clusterApiUrl("devnet");
 export function clusterUrl(cluster: Cluster, customUrl: string): string {
   switch (cluster) {
     case Cluster.Devnet:
-      return DEVNET_URL.replace("api", "explorer-api");
+      return DEVNET_URL;
     case Cluster.MainnetBeta:
-      return MAINNET_BETA_URL.replace("api", "explorer-api");
+      return MAINNET_BETA_URL;
     case Cluster.Testnet:
-      return TESTNET_URL.replace("api", "explorer-api");
+      return TESTNET_URL;
     case Cluster.Custom:
       return customUrl;
   }
