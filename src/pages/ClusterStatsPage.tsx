@@ -251,7 +251,7 @@ function StakingComponent() {
                   </span>
                 </h4>
                 <h1>
-                  <em>${solanaInfo.price.toFixed(2)}</em>{" "}
+                  <em>${solanaInfo.price.toFixed(6)}</em>{" "}
                   {solanaInfo.price_change_percentage_24h > 0 && (
                     <small className="change-positive">
                       &uarr; {solanaInfo.price_change_percentage_24h.toFixed(2)}
