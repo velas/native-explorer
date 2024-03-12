@@ -5,16 +5,28 @@ import { useHistory, useLocation } from "react-router-dom";
 import { reportError } from "utils/sentry";
 import { localStorageIsAvailable } from "utils";
 
+// export function clusterApiUrl(cluster: string): string {
+//   switch (cluster) {
+//     case "mainnet-beta":
+//       return "https://api.mainnet.velas.com";
+//     case "testnet":
+//       return "https://api.testnet.velas.com";
+//     case "devnet":
+//       return "https://api.devnet.velas.com";
+//     default:
+//       return "https://api.mainnet.velas.com";
+//   }
+// }
 export function clusterApiUrl(cluster: string): string {
   switch (cluster) {
     case "mainnet-beta":
-      return "https://api.mainnet.velas.com";
+      return "https://mainnet.velas.com/rpc";
     case "testnet":
-      return "https://api.testnet.velas.com";
+      return "https://testnet.velas.com/rpc";
     case "devnet":
-      return "https://api.devnet.velas.com";
+      return "https://devnet.velas.com/rpc";
     default:
-      return "https://api.mainnet.velas.com";
+      return "https://mainnet.velas.com/rpc";
   }
 }
 
